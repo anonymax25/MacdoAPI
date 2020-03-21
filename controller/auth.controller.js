@@ -14,12 +14,23 @@ class AuthController {
      * @return {Promise<User>}
      */
     static async subscribe(login, password, email) {
+        //check if user with this email already exists
+        const emails = await User.findOne({email});
+        if(emails.length != 0)
+            return null;
+
+        //check if user with this login already exists
+        const logins = await User.find({login});
+        if(logins.length != 0)
+            return null;
+
         const user = new User({
             login: login,
             password: SecurityUtil.hashPassword(password),
             email: email
         });
         await user.save();
+        return user;
     }
 
      static async login(login, password) {
@@ -31,23 +42,33 @@ class AuthController {
             return null;
         }
         const session = new Session({
-            token: await SecurityUtil.randomToken()
+            token: await SecurityUtil.randomToken(),
+            isValid: true
         });
         session.uid = user.id;
         await session.save();
-        return session; // todo voir pour reformat le return avec la session
+        return session;
     }
 
     static async userFromToken(token) {
-        return User.findOne({
-            include: [{
-                model: Session,
-                where: {
-                    token
-                }
-            }]
+        const session = await Session.findOne({token: token, isValid: true});
+        if(!session){
+            return null;
+        }
+        const user = await User.findOne({_id: session.uid});
+        return user;
+    }
 
+    static async logout(token) {
+        const res = await Session.updateOne({ token: token},{ isValid: false}, (err) => {
+            if(err){
+                return false;
+            }
         });
+        if(res.n == 0){
+            return false;
+        }
+        return true;
     }
 }
 

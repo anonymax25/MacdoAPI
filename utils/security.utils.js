@@ -20,7 +20,6 @@ class SecurityUtils {
                     reject(err);
                     return null;
                 }
-                console.log(buf.toString("hex"));
                 resolve(buf.toString("hex"));
             }));
         });
