@@ -11,23 +11,27 @@ class AuthController {
      * @param login
      * @param password
      * @param email
+     * @param isAdmin
+     * @param isPreparator
      * @return {Promise<User>}
      */
-    static async subscribe(login, password, email) {
+    static async subscribe(login, password, email,isAdmin,isPreparator) {
         //check if user with this email already exists
         const emails = await User.findOne({email});
-        if(emails.length != 0)
+        if(emails)
             return null;
 
         //check if user with this login already exists
-        const logins = await User.find({login});
-        if(logins.length != 0)
+        const logins = await User.findOne({login});
+        if(logins)
             return null;
 
         const user = new User({
             login: login,
             password: SecurityUtil.hashPassword(password),
-            email: email
+            email: email,
+            isAdmin: isAdmin,
+            isPreparator: isPreparator
         });
         await user.save();
         return user;
@@ -55,8 +59,17 @@ class AuthController {
         if(!session){
             return null;
         }
-        const user = await User.findOne({_id: session.uid});
+        const user = await User.findOne({_id: session.uid,isAdmin: false});
         return user;
+    }
+
+    static async adminFromToken(token) {
+        const session = await Session.findOne({token: token, isValid: true});
+        if(!session){
+            return null;
+        }
+        const admin = await User.findOne({_id: session.uid, isAdmin: true});
+        return admin;
     }
 
     static async logout(token) {

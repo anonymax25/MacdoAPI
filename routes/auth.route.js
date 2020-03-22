@@ -6,14 +6,14 @@ module.exports = function (app) {
         let body = req.body;
         if (body.login && body.password && body.email) {
             try {
-                const user = await AuthController.subscribe(body.login, body.password, body.email);
+                const user = await AuthController.subscribe(body.login, body.password, body.email,false,false);
                 if (user) {
                     res.status(201).json(user);
                 } else {
                     res.status(409).end();
                 }
             } catch (e) {
-                res.status(409).json(e);
+                res.status(409).end();
             }
 
         } else {
