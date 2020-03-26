@@ -2,8 +2,7 @@ const bodyParser = require('body-parser');
 const AuthMiddleware = require('../middleware').AuthMiddleware;
 
 module.exports = function (app) {
-    app.get('/isValidToken', AuthMiddleware.auth(), bodyParser.json(), (req, res) => {
-        console.log(req.user);
+    app.get('/userFromToken', AuthMiddleware.auth(), bodyParser.json(), (req, res) => {
         res.status(200).json(req.user);
     });
 }

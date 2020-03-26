@@ -4,7 +4,10 @@ const AuthController = require('../controller').AuthController;
 module.exports = function (app) {
     app.post('/subscribe', bodyParser.json(), async (req, res) => {
         let body = req.body;
-        if (body.login && body.password && body.email) {
+
+        const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if (body.login && body.login.length >= 3 && body.password && body.email && regex.test(String(body.email).toLowerCase())) {
             try {
                 const user = await AuthController.subscribe(body.login, body.password, body.email,false,false);
                 if (user) {
@@ -31,7 +34,7 @@ module.exports = function (app) {
                     res.status(401).end();
                 }
             } catch (e) {
-                res.status(400).json(e);
+                res.status(400).end();
             }
         }else{
             res.status(400).end();
@@ -39,6 +42,24 @@ module.exports = function (app) {
     });
 
     app.delete('/logout/:token', bodyParser.json(), async (req, res) => {
+        let token = req.params.token;
+        if(token){
+            try {
+                const success = await AuthController.logout(token);
+                if (success) {
+                    res.status(204).end();
+                } else {
+                    res.status(401).end();
+                }
+            } catch (e) {
+                res.status(400).json(e);
+            }
+        }else{
+            res.status(400).end();
+        }
+    });
+
+    app.get('/logout/:token', bodyParser.json(), async (req, res) => {
         let token = req.params.token;
         if(token){
             try {

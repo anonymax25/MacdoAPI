@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
 
@@ -14,6 +15,8 @@ async function startServer() {
         useUnifiedTopology: true,
         authSource: 'admin'
     });
+
+    app.use(cors());
 
     routes(app);
 

@@ -59,7 +59,7 @@ class AuthController {
         if(!session){
             return null;
         }
-        const user = await User.findOne({_id: session.uid,isAdmin: false});
+        const user = await User.findOne({_id: session.uid});
         return user;
     }
 
