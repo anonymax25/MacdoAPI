@@ -5,4 +5,5 @@ module.exports = function (app) {
     require('./admin/ingredient.route')(app);
     require('./admin/accessory.route')(app);
     require('./user.route')(app);
+    require('./admin/product.route')(app);
 };

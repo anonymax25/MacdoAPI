@@ -6,7 +6,6 @@ const AuthController = require('../../controller').AuthController;
 module.exports = function (app) {
     app.post('/admin/subscribe', bodyParser.json(), async (req, res) => {
         let body = req.body;
-        console.log(body);
         if (body.login && body.password && body.email && body.adminPassword) {
             if(body.adminPassword != process.env.ADMIN_KEY){
                 console.log("bad admin key: " + body.adminPassword);

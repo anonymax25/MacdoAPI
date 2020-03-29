@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3'
 services:
     mongo:
         ports:
@@ -6,7 +6,7 @@ services:
         environment:
             - MONGO_INITDB_ROOT_USERNAME=macdo
             - MONGO_INITDB_ROOT_PASSWORD=macdo
-        image: mongo
+        image: 'mongo'
         volumes:
             - mongo-volume:/data/db
 volumes:
