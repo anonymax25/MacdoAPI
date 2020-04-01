@@ -1,11 +1,14 @@
+
+
 const models = require('../models');
 const Ingredient = models.Ingredient;
 const Supplement = models.Supplement;
+const Menu = models.Menu;
 const Accessory = models.Accessory;
 const Product = models.Product;
 
 
-class ProductsController {
+class MenuController {
 
     /**
      *
@@ -16,61 +19,62 @@ class ProductsController {
      * @param supplements
      * @return {Promise<Product>}
      */
-    static async insertProduct(name,price,ingredients,accessories,supplements) {
+    static async add(name,price,products,accessories,supplements) {
         //check if product with this name already exists
-        const products = await Product.findOne({name});
-        if(products || price <= 0)
+        const menus = await Menu.findOne({name});
+        if(menus || price <= 0)
             return null;
 
-        //check if ingredients to add in product exist
-        const listIngrendients = await Ingredient.find().where('_id').in(ingredients);
-        const setIngredients = new Set(ingredients);
-        if(setIngredients.size != listIngrendients.length){
+        //check if products to add in menu exist
+        const listProducts = await Ingredient.find().where('_id').in(products);
+        const setProductss = new Set(products);
+        if(setProductss.size != listProducts.length){
             return null;
         }
 
-        //check if accessories to add in product exist
+        //check if accessories to add in menu exist
         const listAccessories = await Accessory.find().where('_id').in(accessories);
         const setAccessories = new Set(accessories);
         if(setAccessories.size != listAccessories.length){
             return null;
         }
 
-        //check if accessories to add in product exist
+        //check if accessories to add in menu exist
         const listSupplements = await Supplement.find().where('_id').in(supplements);
         const setSupplements = new Set(supplements);
         if(setSupplements.size != listSupplements.length){
             return null;
         }
 
-        const product = new Product({
+        const menu = new Menu({
             name,
             price,
-            ingredients,
+            products,
             accessories,
             supplements
         });
-        await product.save();
-        return product;
+        await menu.save();
+        return menu;
     }
 
-    static async getProducts() {
-        const products = await Product.find().populate('ingredients').populate('accessories').populate('supplements');
-        return products;
+    static async getAll() {
+        const menus = await Menu.find().populate('products').populate('accessories').populate('supplements');
+        return menus;
     }
 
-    static async getProductById(id) {
-        const product = await Product.findOne({_id: id}).populate('ingredients').populate('accessories').populate('supplements');
-        return product;
+    static async getById(id) {
+        const menu = await Menu.findOne({_id: id}).populate('ingredients').populate('accessories').populate('supplements');
+        return menu;
     }
 
-    static async deleteProductById(id) {
-        const res = await Product.deleteOne({_id: id});
+    static async deleteById(id) {
+        const res = await Menu.deleteOne({_id: id});
         if(res.deletedCount != 1)
             return false;
         return true;
     }
 
+    /*
     static async addIngredientToProductById(id,ingredientId) {
 
         const product = await Product.findOne({_id: id});
@@ -121,7 +125,7 @@ class ProductsController {
         });
         return true;
     }
-
+    */
     /*
     static async updateRealtiveIngredientCount(id, relativeDifferenceToAdd) {
         const ingredient = await Ingredient.findOne({_id: id});
@@ -134,4 +138,4 @@ class ProductsController {
     */
 }
 
-module.exports = ProductsController;
+module.exports = MenuController;

@@ -1,8 +1,7 @@
 const models = require('../models');
 const Ingredient = models.Ingredient;
 const Accessory = models.Accessory;
-
-const SecurityUtil = require('../utils').SecuritryUtils;
+const Product = models.Product;
 
 class IngredientsController {
 
@@ -38,8 +37,13 @@ class IngredientsController {
     }
 
     static async deleteIngredientById(id) {
-        const res = await Ingredient.deleteOne({_id: id});
-        if(res.deletedCount != 1)
+        const products = await Product.find({ingredients: id}).exec();
+        const res = products.map((product) => product = product.name);
+        if (res.length > 0){
+            return res;
+        }
+        const res2 = await Ingredient.deleteOne({_id: id});
+        if(res2.deletedCount != 1)
             return false;
         return true;
     }

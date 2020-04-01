@@ -52,12 +52,16 @@ module.exports = function (app) {
         if (req.params.id) {
             try {
                 const success = await AccessoryController.deleteById(req.params.id);
-                if (success) {
+                if (Array.isArray(success)){
+                    res.status(200).json(success);
+                }
+                if (success === true) {
                     res.status(204).end();
                 } else {
                     res.status(409).end();
                 }
             } catch (e) {
+                console.log(e.message);
                 res.status(500).json(e);
             }
         } else {
@@ -76,6 +80,7 @@ module.exports = function (app) {
                     res.status(409).end();
                 }
             } catch (e) {
+                console.log(e.message);
                 res.status(500).json(e.toString());
             }
         } else {

@@ -1,20 +1,19 @@
 const bodyParser = require('body-parser');
 const AuthMiddleware = require('../../middleware').AuthMiddleware;
 
-const IngredientsController = require('../../controller').IngredientsController;
+const SupplementController = require('../../controller').SupplementController;
 
 module.exports = function (app) {
-    app.post('/admin/ingredient', AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
-        if (req.body.name && req.body.weight) {
+    app.post('/admin/supplement', AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
+        if (req.body.name) {
             try {
-                const ingredient = await IngredientsController.insertIngredient(req.body.name,req.body.weight);
+                const ingredient = await SupplementController.insert(req.body.name);
                 if (ingredient) {
                     res.status(201).json(ingredient);
                 } else {
                     res.status(409).end();
                 }
             } catch (e) {
-                console.log(e.message);
                 res.status(500).json(e);
             }
 
@@ -23,39 +22,36 @@ module.exports = function (app) {
         }
     });
 
-    app.get('/admin/ingredient', AuthMiddleware.auth(), bodyParser.json(), async (req, res) => {
+    app.get('/admin/supplement', AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
         try {
-            const ingredients = await IngredientsController.getIngredients();
+            const ingredients = await SupplementController.getAll();
             if (ingredients) {
                 res.status(201).json(ingredients);
             } else {
                 res.status(409).end();
             }
         } catch (e) {
-            console.log(e.message);
             res.status(500).json(e);
         }
     });
 
-    app.get('/admin/ingredient/:id', AuthMiddleware.auth(), bodyParser.json(), async (req, res) => {
+    app.get('/admin/supplement/:id', AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
         try {
-            const ingredient = await IngredientsController.getIngredientById(req.params.id);
+            const ingredient = await SupplementController.getById(req.params.id);
             if (ingredient) {
                 res.status(201).json(ingredient);
             } else {
                 res.status(409).end();
             }
         } catch (e) {
-            console.log(e.message);
             res.status(500).json(e);
         }
     });
 
-    app.delete('/admin/ingredient/:id', AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
+    app.delete('/admin/supplement/:id', AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
         if (req.params.id) {
             try {
-                const success = await IngredientsController.deleteIngredientById(req.params.id);
-
+                const success = await SupplementController.deleteById(req.params.id);
                 if (Array.isArray(success)){
                     res.status(200).json(success);
                 }
@@ -74,10 +70,10 @@ module.exports = function (app) {
 
     });
 
-    app.put('/admin/ingredient/:id', AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
+    app.put('/admin/supplement/:id', AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
         if (req.params.id && req.body.count) {
             try {
-                const success = await IngredientsController.updateRealtiveIngredientCount(req.params.id, req.body.count);
+                const success = await SupplementController.updateRealtiveCount(req.params.id, req.body.count);
                 if (success) {
                     res.status(204).end();
                 } else {
@@ -85,7 +81,7 @@ module.exports = function (app) {
                 }
             } catch (e) {
                 console.log(e.message);
-                res.status(500).json(e);
+                res.status(500).json(e.toString());
             }
         } else {
             res.status(400).end();

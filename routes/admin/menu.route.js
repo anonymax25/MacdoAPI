@@ -1,13 +1,14 @@
 const bodyParser = require('body-parser');
 const AuthMiddleware = require('../../middleware').AuthMiddleware;
 
-const ProductsController = require('../../controller').ProductsController;
+const MenuController = require('../../controller').MenuController;
 
 module.exports = function (app) {
-    app.post('/admin/product', AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
-        if (req.body.name && req.body.price && req.body.ingredients && req.body.accessories && req.body.supplements) {
+
+    app.post('/admin/menu', AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
+        if (req.body.name && req.body.price && req.body.products && req.body.accessories && req.body.supplements) {
             try {
-                const ingredient = await ProductsController.insertProduct(req.body.name, req.body.price, req.body.ingredients, req.body.accessories, req.body.supplements);
+                const ingredient = await MenuController.add(req.body.name, req.body.price, req.body.products, req.body.accessories, req.body.supplements);
                 if (ingredient) {
                     res.status(201).json(ingredient);
                 } else {
@@ -22,9 +23,9 @@ module.exports = function (app) {
         }
     });
 
-    app.get('/admin/product', bodyParser.json(), async (req, res) => {
+    app.get('/admin/menu', bodyParser.json(), async (req, res) => {
         try {
-            const products = await ProductsController.getProducts();
+            const products = await MenuController.getAll();
             if (products) {
                 res.status(200).json(products);
             } else {
@@ -35,9 +36,9 @@ module.exports = function (app) {
         }
     });
 
-    app.get('/admin/product/:id', bodyParser.json(), async (req, res) => {
+    app.get('/admin/menu/:id', bodyParser.json(), async (req, res) => {
         try {
-            const ingredient = await ProductsController.getProductById(req.params.id);
+            const ingredient = await MenuController.getById(req.params.id);
             if (ingredient) {
                 res.status(201).json(ingredient);
             } else {
@@ -48,10 +49,10 @@ module.exports = function (app) {
         }
     });
 
-    app.delete('/admin/product/:id', AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
+    app.delete('/admin/menu/:id', AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
         if (req.params.id) {
             try {
-                const success = await ProductsController.deleteProductById(req.params.id);
+                const success = await MenuController.deleteById(req.params.id);
                 if (success) {
                     res.status(204).end();
                 } else {
@@ -66,6 +67,7 @@ module.exports = function (app) {
 
     });
 
+    /*
     app.put('/admin/product/removeingredient/:id', AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
         if (req.params.id && req.body.id) {
             try {
@@ -99,7 +101,7 @@ module.exports = function (app) {
             res.status(400).end();
         }
     });
-
+    */
     /*
     app.put('/admin/product/:id', AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
         if (req.params.id && req.body.count) {
