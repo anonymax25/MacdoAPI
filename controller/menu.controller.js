@@ -1,5 +1,3 @@
-
-
 const models = require('../models');
 const Ingredient = models.Ingredient;
 const Supplement = models.Supplement;

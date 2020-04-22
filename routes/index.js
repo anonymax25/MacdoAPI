@@ -7,4 +7,5 @@ module.exports = function (app) {
     require('./user.route')(app);
     require('./admin/product.route')(app);
     require('./admin/supplement.route')(app);
+    require('./command.route')(app);
 };

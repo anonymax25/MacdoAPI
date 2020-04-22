@@ -5,5 +5,6 @@ module.exports = {
     Accessory: require('./accessory.model'),
     Product: require('./product.model'),
     Supplement: require('./supplement.model'),
-    Menu: require('./menu.model')
+    Menu: require('./menu.model'),
+    Command: require('./command.model')
 }

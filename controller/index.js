@@ -4,5 +4,6 @@ module.exports = {
     AccessoryController: require('./accessory.controller'),
     ProductsController: require('./product.controller'),
     SupplementController : require('./supplement.controller'),
-    MenuController: require('./menu.controller')
+    MenuController: require('./menu.controller'),
+    CommandController: require('./command.controller')
 };
