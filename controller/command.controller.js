@@ -6,6 +6,7 @@ const Product = models.Product;
 class CommandController {
 
     static async add(customer,products,menus,staff,price) {
+
         const command = new Command({
             customer,
             products,
@@ -17,6 +18,7 @@ class CommandController {
         await command.save();
         return command;
     }
+
 
     static async getAll() {
         const commands = await Command.find().populate('products').populate('menus');
