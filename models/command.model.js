@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const commandSchema = new Schema({
     customer: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: false
     },
     products: [{
         type: Schema.Types.ObjectId,
