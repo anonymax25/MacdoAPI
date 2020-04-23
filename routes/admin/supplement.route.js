@@ -4,6 +4,7 @@ const AuthMiddleware = require('../../middleware').AuthMiddleware;
 const SupplementController = require('../../controller').SupplementController;
 
 module.exports = function (app) {
+
     app.post('/admin/supplement', AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
         if (req.body.name) {
             try {
@@ -62,7 +63,7 @@ module.exports = function (app) {
                 }
             } catch (e) {
                 console.log(e.message);
-                res.status(500).json(e);
+                res.status(500).json(e.message);
             }
         } else {
             res.status(400).end();
@@ -81,10 +82,10 @@ module.exports = function (app) {
                 }
             } catch (e) {
                 console.log(e.message);
-                res.status(500).json(e.toString());
+                res.status(500).json(e.message);
             }
         } else {
             res.status(400).end();
         }
     });
-}
+};
