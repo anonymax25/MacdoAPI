@@ -6,7 +6,6 @@ const Product = models.Product;
 class CommandController {
 
     static async add(customer,products,menus,staff,price) {
-
         const command = new Command({
             customer,
             products,
@@ -26,8 +25,8 @@ class CommandController {
     }
 
     static async getById(id) {
-        const menu = await Menu.findOne({_id: id}).populate('ingredients').populate('accessories').populate('supplements');
-        return menu;
+        const command = await Command.findOne({_id: id}).populate('user').populate('products').populate('menus');
+        return command;
     }
 }
 

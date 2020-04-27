@@ -28,17 +28,17 @@ module.exports = function (app) {
             res.status(500).json(e);
         }
     });
-    /*
+
     app.get('/command/:id', bodyParser.json(), async (req, res) => {
         try {
-            const ingredient = await ProductsController.getProductById(req.params.id);
+            const ingredient = await CommandController.getById(req.params.id);
             if (ingredient) {
-                res.status(201).json(ingredient);
+                res.status(200).json(ingredient);
             } else {
                 res.status(409).end();
             }
         } catch (e) {
             res.status(500).json(e);
         }
-    });*/
+    });
 }
