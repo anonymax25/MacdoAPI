@@ -8,4 +8,5 @@ module.exports = function (app) {
     require('./admin/product.route')(app);
     require('./admin/supplement.route')(app);
     require('./command.route')(app);
+    require('./admin/preparator.route') (app);
 };
