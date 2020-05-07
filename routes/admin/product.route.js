@@ -1,4 +1,4 @@
-const bodyParser = require('body-parser');
+    const bodyParser = require('body-parser');
 const AuthMiddleware = require('../../middleware').AuthMiddleware;
 
 const ProductsController = require('../../controller').ProductsController;
@@ -23,15 +23,20 @@ module.exports = function (app) {
     });
 
     app.get('/admin/product', bodyParser.json(), async (req, res) => {
+        let doPopulate = false;
+        if(req.body.doPopulate){
+            doPopulate = req.body.doPopulate;
+        }
         try {
-            const products = await ProductsController.getProducts();
+            const products = await ProductsController.getProducts(doPopulate);
             if (products) {
                 res.status(200).json(products);
             } else {
                 res.status(409).end();
             }
         } catch (e) {
-            res.status(500).json(e);
+            console.log(e);
+            res.status(500).end();
         }
     });
 

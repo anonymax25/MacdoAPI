@@ -24,7 +24,7 @@ class MenuController {
             return null;
 
         //check if products to add in menu exist
-        const listProducts = await Ingredient.find().where('_id').in(products);
+        const listProducts = await Product.find().where('_id').in(products);
         const setProductss = new Set(products);
         if(setProductss.size != listProducts.length){
             return null;
@@ -55,8 +55,13 @@ class MenuController {
         return menu;
     }
 
-    static async getAll() {
-        const menus = await Menu.find().populate('products').populate('accessories').populate('supplements');
+    static async getAll(doPopulate) {
+        let menus = null;
+        if(doPopulate) {
+            menus = await Menu.find().populate('products').populate('accessories').populate('supplements');
+        } else {
+            menus = await Menu.find();
+        }
         return menus;
     }
 

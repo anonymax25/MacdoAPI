@@ -54,8 +54,13 @@ class ProductsController {
         return product;
     }
 
-    static async getProducts() {
-        const products = await Product.find().populate('ingredients').populate('accessories').populate('supplements');
+    static async getProducts(doPopulate) {
+        let products = null;
+        if(doPopulate){
+            products = await Product.find().populate('ingredients').populate('accessories').populate('supplements');
+        } else {
+            products = await Product.find();
+        }
         return products;
     }
 
