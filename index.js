@@ -28,6 +28,7 @@ async function startServer() {
         });
     }catch (e) {
         console.log(`Server error : ${e.message}`);
+        console.log(e);
     }
 }
 

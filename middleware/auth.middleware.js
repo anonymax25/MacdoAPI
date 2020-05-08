@@ -19,6 +19,9 @@ class AuthMiddleware {
         }
     }
 
+    static staffAuth() {
+    }
+
     static adminAuth() {
         return async function(req, res, next){
             const authorization = req.headers['authorization']
