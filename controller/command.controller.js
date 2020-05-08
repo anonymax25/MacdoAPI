@@ -29,10 +29,10 @@ class CommandController {
         return command;
     }
 
-    static async isValidated(id) {
+    static async validate(id) {
         const command = await Command.findOne({_id: id});
-        const res = await Command.updateOne({_id: id}, $set: {isValid: true});
-        if(nModified == 0) {
+        const res = await Command.updateOne({_id: id}, {isValid: true});
+        if(res.nModified == 0) {
             return true;
         }
         return false;
@@ -40,8 +40,8 @@ class CommandController {
 
     static async isAssigned(id, staff_id) {
          const command = await Command.findOne({_id: id});
-         const res = await Command.updateOne({_id: id},  $set: {staff: staff_id});
-         if(nModified == 0) {
+         const res = await Command.updateOne({_id: id},{staff: staff_id});
+         if(res.nModified == 0) {
              return true;
          }
          return false;
