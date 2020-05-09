@@ -17,7 +17,8 @@ const commandSchema = new Schema({
     }],
     staff: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: false
     },
     isValid: Boolean,
     price: Number

@@ -69,13 +69,20 @@ class ProductsController {
         return products;
     }
 
+  
     /**
      *
      * @param id
+     * @param doPopulate
      * @return {Promise<Product>}
      */
-    static async getProductById(id) {
-        const product = await Product.findOne({_id: id}).populate('ingredients').populate('accessories').populate('supplements');
+    static async getProductById(id,doPopulate) {
+        let product = null;
+        if (doPopulate) {
+            product = await Product.findOne({_id: id}).populate('ingredients').populate('accessories').populate('supplements');
+        } else {
+            product = await Product.findOne({_id: id});
+        }
         return product;
     }
 

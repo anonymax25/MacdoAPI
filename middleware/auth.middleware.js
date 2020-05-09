@@ -23,7 +23,10 @@ class AuthMiddleware {
             next();
         }
     }
-
+    
+    static staffAuth() {
+    }
+  
     /**
      * @description Middleware to check if Bearer token is valid and corresponds to an admin user
      * @return {function(...[*]=)}
