@@ -9,12 +9,12 @@ class ProductsController {
 
     /**
      *
-     * @param name: string
-     * @param price: number
+     * @param name
+     * @param price
      * @param ingredients
      * @param accessories
      * @param supplements
-     * @return {Promise<Product>}
+     * @return {Promise<null|Product>}
      */
     static async insertProduct(name,price,ingredients,accessories,supplements) {
         //check if product with this name already exists
@@ -54,6 +54,11 @@ class ProductsController {
         return product;
     }
 
+    /**
+     *
+     * @param doPopulate
+     * @return {Promise<Product[]>}
+     */
     static async getProducts(doPopulate) {
         let products = null;
         if(doPopulate){
@@ -64,6 +69,13 @@ class ProductsController {
         return products;
     }
 
+  
+    /**
+     *
+     * @param id
+     * @param doPopulate
+     * @return {Promise<Product>}
+     */
     static async getProductById(id,doPopulate) {
         let product = null;
         if (doPopulate) {
@@ -74,6 +86,11 @@ class ProductsController {
         return product;
     }
 
+    /**
+     *
+     * @param id
+     * @return {Promise<boolean>}
+     */
     static async deleteProductById(id) {
         const res = await Product.deleteOne({_id: id});
         if(res.deletedCount != 1)
@@ -81,23 +98,24 @@ class ProductsController {
         return true;
     }
 
+    /**
+     *
+     * @param id
+     * @param ingredientId
+     * @return {Promise<boolean>}
+     */
     static async addIngredientToProductById(id,ingredientId) {
 
         const product = await Product.findOne({_id: id});
         if(!product){
             return false;
         }
-        console.log(product);
-        console.log(ingredientId);
         const idx = product.ingredients.indexOf(ingredientId);
         if(idx == -1){
             return false;
         }
-        console.log(idx);
 
         product.ingredients.splice(idx,1);
-
-        console.log(product);
 
         product.save((error) => {
             if (error){
@@ -107,22 +125,23 @@ class ProductsController {
         return true;
     }
 
+    /**
+     *
+     * @param id
+     * @param ingredientId
+     * @return {Promise<boolean>}
+     */
     static async removeIngredientFromProductById(id,ingredientId) {
         const product = await Product.findOne({_id: id});
         if(!product){
             return false;
         }
-        console.log(product);
-        console.log(ingredientId);
         const idx = product.ingredients.indexOf(ingredientId);
         if(idx == -1){
             return false;
         }
-        console.log(idx);
 
         product.ingredients.splice(idx,1);
-
-        console.log(product);
 
         product.save((error) => {
             if (error){
@@ -131,17 +150,6 @@ class ProductsController {
         });
         return true;
     }
-
-    /*
-    static async updateRealtiveIngredientCount(id, relativeDifferenceToAdd) {
-        const ingredient = await Ingredient.findOne({_id: id});
-
-        const res = await Ingredient.updateOne({_id: id},{count: ingredient.count + relativeDifferenceToAdd});
-        if(res.nModified != 1)
-            return false;
-        return true;
-    }
-    */
 }
 
 module.exports = ProductsController;

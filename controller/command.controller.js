@@ -9,8 +9,17 @@ const SupplementController = require('./supplement.controller');
 
 
 class CommandController {
-
-    static async add(customer,products,menus,price) {
+    
+  /**
+     *
+     * @param customer
+     * @param products
+     * @param menus
+     * @param staff
+     * @param price
+     * @return {Promise<Command>}
+     */
+    static async add(customer,products,menus,staff,price) {
         const command = new Command({
             customer,
             products,
@@ -23,12 +32,20 @@ class CommandController {
         return command;
     }
 
-
+    /**
+     *
+     * @return {Promise<Command[]>}
+     */
     static async getAll() {
         const commands = await Command.find().populate('products').populate('menus');
         return commands;
     }
 
+    /**
+     *
+     * @param id
+     * @return {Promise<Command>}
+     */
     static async getById(id) {
         const command = await Command.findOne({_id: id}).populate('user').populate('products').populate('menus');
         return command;
