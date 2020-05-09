@@ -42,7 +42,7 @@ module.exports = function (app) {
 
     app.get('/admin/product/:id', bodyParser.json(), async (req, res) => {
         try {
-            const ingredient = await ProductsController.getProductById(req.params.id);
+            const ingredient = await ProductsController.getProductById(req.params.id,true);
             if (ingredient) {
                 res.status(201).json(ingredient);
             } else {
