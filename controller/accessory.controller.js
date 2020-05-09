@@ -2,6 +2,7 @@ const models = require('../models');
 const Ingredient = models.Ingredient;
 const Accessory = models.Accessory;
 const Product = models.Product;
+const Menu = models.Menu;
 
 class AccessoryController {
 
@@ -57,8 +58,16 @@ class AccessoryController {
             return res;
         }
 
-        const res2 = await Accessory.deleteOne({_id: id});
-        if(res2.deletedCount != 1)
+
+        // check if accessory is not used in any menus
+        const menus = await Menu.find({accessories: id}).exec();
+        const res2 = menus.map((menu) => menu = menu._id);
+        if(res2.length > 0){
+            return res2;
+        }
+
+        const res3 = await Accessory.deleteOne({_id: id});
+        if(res3.deletedCount != 1)
             return false;
         return true;
     }

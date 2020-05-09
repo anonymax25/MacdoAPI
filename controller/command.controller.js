@@ -51,7 +51,12 @@ class CommandController {
         return command;
     }
 
-    static async validate(id) {
+    /**
+     *
+     * @param id
+     * @return {Promise<boolean>}
+     */
+    static async validateCommand(id) {
         const command = await Command.findOne({_id: id}).populate('products').populate('menus').populate('ingredients').populate('accessories').populate('supplements');
         this.removeStockFromCommand(command);
         const res = await Command.updateOne({_id: id}, {isValid: true});
@@ -60,6 +65,12 @@ class CommandController {
         }
         return false;
     }
+
+    /**
+     *
+     * @param command
+     * @return {Promise<void>}
+     */
     static async removeStockFromCommand(command) {
         const ingredientsRemove = [];
         const accessoriesRemove = [];
@@ -103,10 +114,16 @@ class CommandController {
         });
     }
 
-    static async isAssigned(id, staff_id) {
+    /**
+     *
+     * @param id
+     * @param staff_id
+     * @return {Promise<boolean>}
+     */
+    static async assignPreparator(id, staff_id) {
          const command = await Command.findOne({_id: id});
          const res = await Command.updateOne({_id: id},{staff: staff_id});
-         if(res.nModified == 0) {
+         if(res.nModified === 1) {
              return true;
          }
          return false;

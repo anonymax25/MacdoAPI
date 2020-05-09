@@ -1,7 +1,7 @@
 {
   "name": "MacdoApi",
   "version": "1.0.0",
-  "description": "",
+  "description": "Fast-Food like web-API, to control all aspects of a fastfood. From stock management, User management and authentification, preparators and command management and delivery.",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js"
