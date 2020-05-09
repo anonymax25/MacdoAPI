@@ -10,12 +10,12 @@ class MenuController {
 
     /**
      *
-     * @param name: string
-     * @param price: number
-     * @param ingredients
+     * @param name
+     * @param price
+     * @param products
      * @param accessories
      * @param supplements
-     * @return {Promise<Product>}
+     * @return {Promise<null|Menu>}
      */
     static async add(name,price,products,accessories,supplements) {
         //check if product with this name already exists
@@ -24,7 +24,7 @@ class MenuController {
             return null;
 
         //check if products to add in menu exist
-        const listProducts = await Ingredient.find().where('_id').in(products);
+        const listProducts = await Product.find().where('_id').in(products);
         const setProductss = new Set(products);
         if(setProductss.size != listProducts.length){
             return null;
@@ -55,16 +55,36 @@ class MenuController {
         return menu;
     }
 
-    static async getAll() {
-        const menus = await Menu.find().populate('products').populate('accessories').populate('supplements');
+    /**
+     *
+     * @param doPopulate
+     * @return {Promise<Menu[]>}
+     */
+    static async getAll(doPopulate) {
+        let menus = null;
+        if(doPopulate) {
+            menus = await Menu.find().populate('products').populate('accessories').populate('supplements');
+        } else {
+            menus = await Menu.find();
+        }
         return menus;
     }
 
+    /**
+     *
+     * @param id
+     * @return {Promise<Menu>}
+     */
     static async getById(id) {
         const menu = await Menu.findOne({_id: id}).populate('ingredients').populate('accessories').populate('supplements');
         return menu;
     }
 
+    /**
+     *
+     * @param id
+     * @return {Promise<boolean>}
+     */
     static async deleteById(id) {
         const res = await Menu.deleteOne({_id: id});
         if(res.deletedCount != 1)

@@ -1,6 +1,11 @@
 const AuthController = require('../controller').AuthController;
 
 class AuthMiddleware {
+
+    /**
+     * @description Middleware to check if Bearer token is valid and corresponds to normal user
+     * @return {function(...[*]=)}
+     */
     static auth() {
         return async function(req, res, next){
             const authorization = req.headers['authorization']
@@ -18,7 +23,14 @@ class AuthMiddleware {
             next();
         }
     }
-
+    
+    static staffAuth() {
+    }
+  
+    /**
+     * @description Middleware to check if Bearer token is valid and corresponds to an admin user
+     * @return {function(...[*]=)}
+     */
     static adminAuth() {
         return async function(req, res, next){
             const authorization = req.headers['authorization']

@@ -8,7 +8,7 @@ class SupplementController {
     /**
      *
      * @param name
-     * @return {Promise<Supplement>}
+     * @return {Promise<null|Supplement>}
      */
     static async insert(name) {
         //check if accessory with this name already exists
@@ -24,16 +24,30 @@ class SupplementController {
         return supplement;
     }
 
+    /**
+     *
+     * @return {Promise<Supplement[]>}
+     */
     static async getAll() {
         const supplements = await Supplement.find();
         return supplements;
     }
 
+    /**
+     *
+     * @param id
+     * @return {Promise<Supplement>}
+     */
     static async getById(id) {
         const supplement = await Supplement.findOne({_id: id});
         return supplement;
     }
 
+    /**
+     *
+     * @param id
+     * @return {Promise<boolean|string[]>}
+     */
     static async deleteById(id) {
         const products = await Product.find({supplements: id}).exec();
         const res = products.map((product) => product = product.name);
@@ -47,6 +61,12 @@ class SupplementController {
         return true;
     }
 
+    /**
+     *
+     * @param id
+     * @param relativeDifferenceToAdd
+     * @return {Promise<boolean>}
+     */
     static async updateRealtiveCount(id, relativeDifferenceToAdd) {
         const supplement = await Supplement.findOne({_id: id});
 
