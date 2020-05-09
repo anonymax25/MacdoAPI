@@ -54,7 +54,7 @@ module.exports = function (app) {
             try {
                 const success = await SupplementController.deleteById(req.params.id);
                 if (Array.isArray(success)){
-                    res.status(200).json(success);
+                    res.status(400).json(success);
                 }
                 if (success === true) {
                     res.status(204).end();

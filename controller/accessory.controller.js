@@ -7,7 +7,7 @@ class AccessoryController {
 
     /**
      *
-     * @param name
+     * @param name {string}
      * @return {Promise<Ingredient>}
      */
     static async insert(name) {
@@ -24,19 +24,35 @@ class AccessoryController {
         return accessory;
     }
 
+    /**
+     *
+     * @return {Promise<Accessory[]>}
+     */
     static async getAll() {
         const accessories = await Accessory.find();
         return accessories;
     }
 
+    /**
+     *
+     * @param id
+     * @return {Promise<Accessory>}
+     */
     static async getById(id) {
         const accessory = await Accessory.findOne({_id: id});
         return accessory;
     }
 
+    /**
+     *
+     * @param id
+     * @return {Promise<boolean|string[]>}
+     */
     static async deleteById(id) {
+
+        // check if accessory is not used in any product
         const products = await Product.find({accessories: id}).exec();
-        const res = products.map((product) => product = product.name);
+        const res = products.map((product) => product = product._id);
         if(res.length > 0){
             return res;
         }
@@ -47,6 +63,12 @@ class AccessoryController {
         return true;
     }
 
+    /**
+     *
+     * @param id
+     * @param relativeDifferenceToAdd
+     * @return {Promise<boolean>}
+     */
     static async updateRealtiveCount(id, relativeDifferenceToAdd) {
         const accessory = await Accessory.findOne({_id: id});
 
