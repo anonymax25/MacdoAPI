@@ -5,4 +5,5 @@ module.exports = function(app){
     require('./supplement.route')(app);
     require('./product.route')(app);
     require('./menu.route')(app);
+    require('./management.route')(app);
 };

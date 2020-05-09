@@ -1,5 +1,4 @@
 const bodyParser = require('body-parser');
-const AuthMiddleware = require('../../middleware').AuthMiddleware;
 
 const AuthController = require('../../controller').AuthController;
 
@@ -27,5 +26,6 @@ module.exports = function (app) {
             res.status(400).end();
         }
     });
+
 }
 
