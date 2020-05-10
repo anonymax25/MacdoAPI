@@ -1,11 +1,19 @@
 const models = require('../models');
 const Command = models.Command;
 const Product = models.Product;
-
+const User = models.User;
 
 class CommandController {
 
-    static async add(customer,products,menus,price) {
+    static async add(customer,products,menus) {
+         let price = 0;
+         menus.foreach(menu => {
+            price += menu.price;
+         })
+         products.foreach(product => {
+            price += product.price;
+         })
+
         const command = new Command({
             customer,
             products,
@@ -18,7 +26,6 @@ class CommandController {
         return command;
     }
 
-
     static async getAll() {
         const commands = await Command.find().populate('products').populate('menus');
         return commands;
@@ -30,19 +37,22 @@ class CommandController {
     }
 
     static async validate(id) {
-        const command = await Command.findOne({_id: id});
         const res = await Command.updateOne({_id: id}, {isValid: true});
-        if(res.nModified == 0) {
+        if(res.nModified !== 0) {
             return true;
         }
         return false;
     }
 
     static async isAssigned(id, staff_id) {
-         const command = await Command.findOne({_id: id});
-         const res = await Command.updateOne({_id: id},{staff: staff_id});
-         if(res.nModified == 0) {
-             return true;
+         const staff = await User.findOne({staff_id});
+
+         if(staff.isPreparator) {
+            const res = await Command.updateOne({_id: id}, {staff: staff_id});
+
+            if(res.nModified !== 0) {
+                return true;
+            }
          }
          return false;
     }
