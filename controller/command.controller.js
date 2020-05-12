@@ -29,6 +29,11 @@ class CommandController {
         const menu = await Menu.findOne({_id: id}).populate('ingredients').populate('accessories').populate('supplements');
         return menu;
     }
+
+    static async getAllNoStaff(){
+        const commands = await Command.find({staff: null}).populate('products').populate('menus');
+        return commands;
+    }
 }
 
 module.exports = CommandController;
