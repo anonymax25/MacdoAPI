@@ -19,7 +19,7 @@ module.exports = function (app) {
         }
     });
 
-    app.get('/command', AuthMiddleware.staffAuth(), bodyParser.json(), async (req, res) => {
+    app.get('/command', AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
         try {
             const products = await CommandController.getAll();
             if (products) {

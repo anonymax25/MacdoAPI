@@ -54,6 +54,11 @@ class AuthController {
         return session;
     }
 
+    static async getUserById(id) {
+        const user = await User.findOne({_id: session.uid});
+        return user;
+    }
+
     static async userFromToken(token) {
         const session = await Session.findOne({token: token, isValid: true});
         if(!session){

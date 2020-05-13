@@ -1,18 +1,24 @@
 const models = require('../models');
 const Command = models.Command;
-const Product = models.Product;
-const User = models.User;
+const UserController = require('./controller').AuthController;
+const MenuController = require('./controller').MenuController;
+const ProductsController = require('./controller').ProductsController;
 
 class CommandController {
 
     static async add(customer,products,menus) {
          let price = 0;
-         menus.foreach(menu => {
-            price += menu.price;
-         })
-         products.foreach(product => {
-            price += product.price;
-         })
+         let res;
+
+         menus.foreach(menu_id => {
+            res = MenuController.getById({menu_id});
+            price += res.price;
+         });
+
+         products.foreach(product_id => {
+            res = ProductsController.getProductById({product_id})
+            price += res.price;
+         });
 
         const command = new Command({
             customer,
@@ -27,7 +33,7 @@ class CommandController {
     }
 
     static async getAll() {
-        const commands = await Command.find().populate('products').populate('menus');
+        const commands = await Command.find().populate('user').populate('products').populate('menus');
         return commands;
     }
 
@@ -37,20 +43,20 @@ class CommandController {
     }
 
     static async validate(id) {
-        const res = await Command.updateOne({_id: id}, {isValid: true});
-        if(res.nModified !== 0) {
-            return true;
-        }
-        return false;
+            const res = await Command.updateOne({_id: id}, {isValid: true});
+            if(res.nModified !== 0) {
+                return true;
+            }
+            return false;
     }
 
     static async isAssigned(id, staff_id) {
-         const staff = await User.findOne({staff_id});
+         const staff = await UserController.getUserById({staff_id});
 
          if(staff.isPreparator) {
             const res = await Command.updateOne({_id: id}, {staff: staff_id});
 
-            if(res.nModified !== 0) {
+            if(res.nModified === 1) {
                 return true;
             }
          }
