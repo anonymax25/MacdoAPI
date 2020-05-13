@@ -45,11 +45,12 @@ module.exports = function (app) {
 
     app.put('/command/valid/:id', AuthMiddleware.staffAuth(), bodyParser.json(), async (req, res) => {
        try {
-           const command = await CommandController.validate(req.params.id);
+           const command = await CommandController.validateCommand(req.params.id);
            if (command) {
                res.status(200).json(command);
            } else {
                res.status(409).end();
+
            }
        } catch (e) {
            res.status(500).json(e);

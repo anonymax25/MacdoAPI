@@ -13,7 +13,7 @@ class AuthController {
      * @param email
      * @param isAdmin
      * @param isPreparator
-     * @return {Promise<User>}
+     * @return {Promise<null|User>}
      */
     static async subscribe(login, password, email,isAdmin,isPreparator) {
         //check if user with this email already exists
@@ -37,7 +37,13 @@ class AuthController {
         return user;
     }
 
-     static async login(login, password) {
+    /**
+     *
+     * @param login
+     * @param password
+     * @return {Promise<null|Session>}
+     */
+    static async login(login, password) {
         const user = await User.findOne({
             login: login,
             password: SecurityUtil.hashPassword(password)
@@ -58,7 +64,12 @@ class AuthController {
         const user = await User.findOne({_id: session.uid});
         return user;
     }
-
+  
+    /**
+     *
+     * @param token
+     * @return {Promise<null|User>}
+     */
     static async userFromToken(token) {
         const session = await Session.findOne({token: token, isValid: true});
         if(!session){
@@ -68,6 +79,11 @@ class AuthController {
         return user;
     }
 
+    /**
+     *
+     * @param token
+     * @return {Promise<null|User>}
+     */
     static async adminFromToken(token) {
         const session = await Session.findOne({token: token, isValid: true});
         if(!session){
@@ -77,6 +93,11 @@ class AuthController {
         return admin;
     }
 
+    /**
+     *
+     * @param token
+     * @return {Promise<boolean>}
+     */
     static async logout(token) {
         const res = await Session.updateOne({ token: token},{ isValid: false}, (err) => {
             if(err){

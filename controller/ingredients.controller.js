@@ -9,7 +9,7 @@ class IngredientsController {
      *
      * @param name
      * @param weight
-     * @return {Promise<Ingredient>}
+     * @return {Promise<null|Ingredient>}
      */
     static async insertIngredient(name,weight) {
         //check if ingredient with this name already exists
@@ -26,19 +26,33 @@ class IngredientsController {
         return ingredient;
     }
 
+    /**
+     *
+     * @return {Promise<Ingredient[]>}
+     */
     static async getIngredients() {
         const ingredients = await Ingredient.find();
         return ingredients;
     }
 
+    /**
+     *
+     * @param id
+     * @return {Promise<Ingredient>}
+     */
     static async getIngredientById(id) {
         const ingredient = await Ingredient.findOne({_id: id});
         return ingredient;
     }
 
+    /**
+     *
+     * @param id
+     * @return {Promise<boolean|string[]>}
+     */
     static async deleteIngredientById(id) {
         const products = await Product.find({ingredients: id}).exec();
-        const res = products.map((product) => product = product.name);
+        const res = products.map((product) => product = product._id);
         if (res.length > 0){
             return res;
         }
@@ -48,6 +62,12 @@ class IngredientsController {
         return true;
     }
 
+    /**
+     *
+     * @param id
+     * @param relativeDifferenceToAdd
+     * @return {Promise<boolean>}
+     */
     static async updateRealtiveIngredientCount(id, relativeDifferenceToAdd) {
         const ingredient = await Ingredient.findOne({_id: id});
 

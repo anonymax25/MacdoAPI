@@ -2,7 +2,7 @@ const crypto = require('crypto');
 
 class SecurityUtils {
     /**
-     *
+     * @description password hash to put in DB
      * @param password {string}
      * @return {string}
      */
@@ -13,6 +13,10 @@ class SecurityUtils {
         return hash.digest("hex").toString();
     }
 
+    /**
+     * @description generate session token
+     * @return {Promise<string>}
+     */
     static randomToken() {
         return new Promise((resolve, reject) => {
             crypto.randomBytes(27, ((err, buf) => {

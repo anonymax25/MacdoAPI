@@ -10,12 +10,12 @@ class MenuController {
 
     /**
      *
-     * @param name: string
-     * @param price: number
-     * @param ingredients
+     * @param name
+     * @param price
+     * @param products
      * @param accessories
      * @param supplements
-     * @return {Promise<Product>}
+     * @return {Promise<null|Menu>}
      */
     static async add(name,price,products,accessories,supplements) {
         //check if product with this name already exists
@@ -55,6 +55,11 @@ class MenuController {
         return menu;
     }
 
+    /**
+     *
+     * @param doPopulate
+     * @return {Promise<Menu[]>}
+     */
     static async getAll(doPopulate) {
         let menus = null;
         if(doPopulate) {
@@ -65,11 +70,21 @@ class MenuController {
         return menus;
     }
 
+    /**
+     *
+     * @param id
+     * @return {Promise<Menu>}
+     */
     static async getById(id) {
         const menu = await Menu.findOne({_id: id}).populate('ingredients').populate('accessories').populate('supplements');
         return menu;
     }
 
+    /**
+     *
+     * @param id
+     * @return {Promise<boolean>}
+     */
     static async deleteById(id) {
         const res = await Menu.deleteOne({_id: id});
         if(res.deletedCount != 1)
