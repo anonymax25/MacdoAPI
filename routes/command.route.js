@@ -33,7 +33,7 @@ module.exports = function (app) {
     app.get('/command/:id', AuthMiddleware.auth(), bodyParser.json(), async (req, res) => {
         try {
             const command = await CommandController.getById(req.params.id);
-            if (ingredient) {
+            if (command) {
                 res.status(200).json(command);
             } else {
                 res.status(409).end();
@@ -61,7 +61,7 @@ module.exports = function (app) {
     app.put('/command/staff/:id', AuthMiddleware.staffAuth(), bodyParser.json(), async (req, res) => {
         if(req.body.staff) {
             try {
-                const command = await CommandController.isAssigned(req.params.id, req.body.staff);
+                const command = await CommandController.assignPreparator(req.params.id, req.body.staff);
                 if (command) {
                     res.status(200).json(command);
                 }

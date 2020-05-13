@@ -136,23 +136,16 @@ class CommandController {
      * @return {Promise<boolean>}
      */
     static async assignPreparator(id, staff_id) {
-         const command = await Command.findOne({_id: id});
-         const res = await Command.updateOne({_id: id},{staff: staff_id});
-         if(res.nModified === 1) {
-             return true;
-         }
-         return false;
+        const staff = await UserController.getUserById({staff_id});
+
+        if (staff.isPreparator) {
+            const res = await Command.updateOne({_id: id}, {staff: staff_id});
+
+            if (res.nModified === 1) {
+                return true;
+            }
+        }
     }
-    //verifier
-    static async isAssigned(id, staff_id) {
-       const staff = await UserController.getUserById({staff_id});
-
-       if(staff.isPreparator) {
-          const res = await Command.updateOne({_id: id}, {staff: staff_id});
-
-          if(res.nModified === 1) {
-              return true;
-     }
 }
 
 module.exports = CommandController;
