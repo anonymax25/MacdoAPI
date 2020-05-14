@@ -1,9 +1,9 @@
 const models = require('../models');
 const Command = models.Command;
 
-const UserController = require('./controller').AuthController;
-const MenuController = require('./controller').MenuController;
-const ProductsController = require('./controller').ProductsController;
+const UserController = require('../controller').AuthController;
+const MenuController = require('../controller').MenuController;
+const ProductsController = require('../controller').ProductsController;
 const IngredientController = require('./ingredients.controller');
 const AccessoryController = require('./accessory.controller');
 const SupplementController = require('./supplement.controller');
