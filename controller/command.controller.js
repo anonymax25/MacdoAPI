@@ -145,6 +145,11 @@ class CommandController {
             }
         }
     }
+
+    static async getAllNoStaff(){
+        const commands = await Command.find({staff: null}).populate('products').populate('menus');
+        return commands;
+    }
 }
 
 module.exports = CommandController;
