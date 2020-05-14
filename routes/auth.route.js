@@ -23,6 +23,7 @@ module.exports = function (app) {
             res.status(400).end();
         }
     });
+
     app.post('/login', bodyParser.json(), async (req, res) => {
         let body = req.body;
         if (body.login && body.password) {
