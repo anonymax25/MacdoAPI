@@ -29,6 +29,19 @@ module.exports = function (app) {
         }
     });
 
+    app.get('/command/noStaff', AuthMiddleware.staffAuth(),  bodyParser.json(), async (req, res) => {
+        try {
+            const products = await CommandController.getAllNoStaff();
+            if (products) {
+                res.status(200).json(products);
+            } else {
+                res.status(409).end();
+            }
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    });
+
     app.get('/command/:id', AuthMiddleware.auth(), bodyParser.json(), async (req, res) => {
         try {
             const command = await CommandController.getById(req.params.id);
