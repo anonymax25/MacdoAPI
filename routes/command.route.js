@@ -29,7 +29,7 @@ module.exports = function (app) {
         }
     });
 
-    app.get('/command/noStaff', bodyParser.json(), async (req, res) => {
+    app.get('/command/noStaff', AuthMiddleware.staffAuth(),  bodyParser.json(), async (req, res) => {
         try {
             const products = await CommandController.getAllNoStaff();
             if (products) {
