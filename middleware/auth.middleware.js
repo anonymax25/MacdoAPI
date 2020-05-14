@@ -8,7 +8,7 @@ class AuthMiddleware {
      */
     static auth() {
         return async function(req, res, next){
-            const authorization = req.headers['authorization']
+            const authorization = req.headers['authorization'];
             if(!authorization || !authorization.startsWith('Bearer ')){
                 res.status(401).end();
                 return;
@@ -26,7 +26,7 @@ class AuthMiddleware {
     
     static staffAuth() {
         return async function(req, res, next){
-            const authorization = req.headers['authorization']
+            const authorization = req.headers['authorization'];
             if(!authorization || !authorization.startsWith('Bearer ')){
                 res.status(401).end();
                 return;
@@ -48,7 +48,7 @@ class AuthMiddleware {
      */
     static adminAuth() {
         return async function(req, res, next){
-            const authorization = req.headers['authorization']
+            const authorization = req.headers['authorization'];
             if(!authorization || !authorization.startsWith('Bearer ')) {
                 res.status(401).end();
                 return;

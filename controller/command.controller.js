@@ -12,12 +12,11 @@ const SupplementController = require('./supplement.controller');
 class CommandController {
     
   /**
-     * @param customer
-     * @param products
-     * @param menus
-     * @param staff
-     * @param price
-     * @return {Promise<Command>}
+   *
+   * @param customer
+   * @param products
+   * @param menus
+   * @return {Promise<Command>}
   */
  static async add(customer,products,menus) {
          let price = 0;
@@ -96,7 +95,7 @@ class CommandController {
         const menus = command.menus;
         for (const menu of menus) {
             for (const product of menu.products) {
-                products.push(await ProductController.getProductById(product,false));
+                products.push(await ProductsController.getProductById(product,false));
             }
             for (const accessory of menu.accessories) {
                 accessoriesRemove.push(accessory._id);
