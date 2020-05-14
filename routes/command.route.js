@@ -1,5 +1,4 @@
 const bodyParser = require('body-parser');
-
 const CommandController = require('../controller').CommandController;
 const AuthMiddleware = require('../middleware').AuthMiddleware;
 

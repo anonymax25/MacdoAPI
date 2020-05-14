@@ -1,17 +1,17 @@
 const models = require('../models');
 const Command = models.Command;
+
 const UserController = require('./controller').AuthController;
 const MenuController = require('./controller').MenuController;
 const ProductsController = require('./controller').ProductsController;
-const Product = models.Product;
 const IngredientController = require('./ingredients.controller');
 const AccessoryController = require('./accessory.controller');
 const SupplementController = require('./supplement.controller');
 
+
 class CommandController {
     
   /**
-     *
      * @param customer
      * @param products
      * @param menus
@@ -23,12 +23,12 @@ class CommandController {
          let price = 0;
          let res;
 
-         menus.foreach(menu_id => {
+         menus.forEach(menu_id => {
             res = MenuController.getById({menu_id});
             price += res.price;
          });
 
-         products.foreach(product_id => {
+         products.forEach(product_id => {
             res = ProductsController.getProductById({product_id})
             price += res.price;
         });
