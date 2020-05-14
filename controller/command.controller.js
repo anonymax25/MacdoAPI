@@ -1,8 +1,9 @@
 const models = require('../models');
 const Command = models.Command;
-const Product = models.Product;
 
-const ProductController = require('./product.controller');
+const UserController = require('./controller').AuthController;
+const MenuController = require('./controller').MenuController;
+const ProductsController = require('./controller').ProductsController;
 const IngredientController = require('./ingredients.controller');
 const AccessoryController = require('./accessory.controller');
 const SupplementController = require('./supplement.controller');
@@ -11,15 +12,26 @@ const SupplementController = require('./supplement.controller');
 class CommandController {
     
   /**
-     *
-     * @param customer
-     * @param products
-     * @param menus
-     * @param staff
-     * @param price
-     * @return {Promise<Command>}
-     */
-    static async add(customer,products,menus,staff,price) {
+   *
+   * @param customer
+   * @param products
+   * @param menus
+   * @return {Promise<Command>}
+  */
+ static async add(customer,products,menus) {
+         let price = 0;
+         let res;
+
+         menus.forEach(menu_id => {
+            res = MenuController.getById({menu_id});
+            price += res.price;
+         });
+
+         products.forEach(product_id => {
+            res = ProductsController.getProductById({product_id})
+            price += res.price;
+        });
+   
         const command = new Command({
             customer,
             products,
@@ -28,16 +40,18 @@ class CommandController {
             isValid: false,
             price
         });
+   
         await command.save();
         return command;
     }
+
 
     /**
      *
      * @return {Promise<Command[]>}
      */
     static async getAll() {
-        const commands = await Command.find().populate('products').populate('menus');
+        const commands = await Command.find().populate('user').populate('products').populate('menus');
         return commands;
     }
 
@@ -51,7 +65,12 @@ class CommandController {
         return command;
     }
 
-    static async validate(id) {
+    /**
+     *
+     * @param id
+     * @return {Promise<boolean>}
+     */
+    static async validateCommand(id) {
         const command = await Command.findOne({_id: id}).populate('products').populate('menus').populate('ingredients').populate('accessories').populate('supplements');
         this.removeStockFromCommand(command);
         const res = await Command.updateOne({_id: id}, {isValid: true});
@@ -60,6 +79,12 @@ class CommandController {
         }
         return false;
     }
+
+    /**
+     *
+     * @param command
+     * @return {Promise<void>}
+     */
     static async removeStockFromCommand(command) {
         const ingredientsRemove = [];
         const accessoriesRemove = [];
@@ -70,7 +95,7 @@ class CommandController {
         const menus = command.menus;
         for (const menu of menus) {
             for (const product of menu.products) {
-                products.push(await ProductController.getProductById(product,false));
+                products.push(await ProductsController.getProductById(product,false));
             }
             for (const accessory of menu.accessories) {
                 accessoriesRemove.push(accessory._id);
@@ -103,13 +128,27 @@ class CommandController {
         });
     }
 
-    static async isAssigned(id, staff_id) {
-         const command = await Command.findOne({_id: id});
-         const res = await Command.updateOne({_id: id},{staff: staff_id});
-         if(res.nModified == 0) {
-             return true;
-         }
-         return false;
+    /**
+     *
+     * @param id
+     * @param staff_id
+     * @return {Promise<boolean>}
+     */
+    static async assignPreparator(id, staff_id) {
+        const staff = await UserController.getUserById({staff_id});
+
+        if (staff.isPreparator) {
+            const res = await Command.updateOne({_id: id}, {staff: staff_id});
+
+            if (res.nModified === 1) {
+                return true;
+            }
+        }
+    }
+
+    static async getAllNoStaff(){
+        const commands = await Command.find({staff: null}).populate('products').populate('menus');
+        return commands;
     }
 }
 

@@ -2,6 +2,7 @@ const models = require('../models');
 const Supplement = models.Supplement;
 const Accessory = models.Accessory;
 const Product = models.Product;
+const Menu = models.Menu;
 
 class SupplementController {
 
@@ -11,7 +12,7 @@ class SupplementController {
      * @return {Promise<null|Supplement>}
      */
     static async insert(name) {
-        //check if accessory with this name already exists
+        //check if Supplement with this name already exists
         const supplements = await Supplement.findOne({name});
         if(supplements)
             return null;
@@ -49,14 +50,23 @@ class SupplementController {
      * @return {Promise<boolean|string[]>}
      */
     static async deleteById(id) {
+        // check if Supplement is not used in any products before deleting it
         const products = await Product.find({supplements: id}).exec();
-        const res = products.map((product) => product = product.name);
+        const res = products.map((product) => product = product._id);
         if(res.length > 0){
             return res;
         }
 
-        const res2 = await Supplement.deleteOne({_id: id});
-        if(res2.deletedCount != 1)
+        // check if Supplement is not used in any menus before deleting it
+        const menus = await Menu.find({supplements: id}).exec();
+        const res2 = menus.map((menu) => menu = menu._id);
+        if(res2.length > 0){
+            return res2;
+        }
+
+        //delete supplement if all is good
+        const res3 = await Supplement.deleteOne({_id: id});
+        if(res3.deletedCount != 1)
             return false;
         return true;
     }

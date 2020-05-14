@@ -60,6 +60,11 @@ class AuthController {
         return session;
     }
 
+    static async getUserById(id) {
+        const user = await User.findOne({_id: session.uid});
+        return user;
+    }
+  
     /**
      *
      * @param token
