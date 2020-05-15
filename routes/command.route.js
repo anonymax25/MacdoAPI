@@ -9,8 +9,11 @@ module.exports = function (app) {
                 const command = await CommandController.add(req.body.customer, req.body.products, req.body.menus);
                 if (command) {
                     res.status(201).json(command);
+                }else{
+                    res.status(401).end();
                 }
             } catch (e) {
+                console.log(e);
                 res.status(500).json(e);
             }
         } else {
@@ -42,10 +45,10 @@ module.exports = function (app) {
         }
     });
 
-    app.get('/command/history', AuthMiddleware.auth(), bodyParser.json(), async (req, res) => {
-        if(req.body.command) {
+    app.get('/command/history/:id', AuthMiddleware.auth(), async (req, res) => {
+        if(req.params.id) {
             try {
-                const commands = await CommandController.getHistory(req.body.customer);
+                const commands = await CommandController.getHistory(req.params.id);
                 if (commands) {
                     res.status(200).json(commands);
                 } else {
@@ -54,6 +57,8 @@ module.exports = function (app) {
             } catch (e) {
                 res.status(500).json(e);
             }
+        }else{
+            res.status(400).end();
         }
     });
 
@@ -71,6 +76,7 @@ module.exports = function (app) {
     });
 
     app.put('/command/valid/:id', AuthMiddleware.staffAuth(), bodyParser.json(), async (req, res) => {
+
        try {
            const command = await CommandController.validateCommand(req.params.id);
            if (command) {
@@ -85,14 +91,15 @@ module.exports = function (app) {
        }
     });
 
-    app.put('/command/staff/:id', AuthMiddleware.staffAuth(), bodyParser.json(), async (req, res) => {
-        if(req.body.staff) {
+    app.put('/command/staff/:id', AuthMiddleware.staffAuth(), async (req, res) => {
+        if(req.user._id) {
             try {
-                const command = await CommandController.assignPreparator(req.params.id, req.body.staff);
+                const command = await CommandController.assignPreparator(req.params.id, req.user._id);
                 if (command) {
                     res.status(200).json(command);
                 }
             } catch (e) {
+                console.log(e);
                 res.status(500).json(e);
             }
         } else {

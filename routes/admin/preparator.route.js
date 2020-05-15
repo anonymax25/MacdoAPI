@@ -4,7 +4,7 @@ const AuthMiddleware = require('../../middleware').AuthMiddleware;
 const AuthController = require('../../controller').AuthController;
 
 module.exports = function (app) {
-    app.post('/admin/preparator', bodyParser.json(), async (req, res) => {
+    app.post('/admin/preparator',AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
         let body = req.body;
         if (body.login && body.password && body.email) {
             try {

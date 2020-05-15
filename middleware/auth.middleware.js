@@ -33,7 +33,11 @@ class AuthMiddleware {
             }
             const token = authorization.slice(7);
             const staff = await AuthController.userFromToken(token);
-            if(!staff && !staff.isPeparator) {
+            if(!staff){
+                res.status(403).end();
+                return;
+            }
+            if(!staff.isStaff) {
                 res.status(403).end();
                 return;
             }

@@ -12,10 +12,10 @@ class AuthController {
      * @param password
      * @param email
      * @param isAdmin
-     * @param isPreparator
+     * @param isStaff
      * @return {Promise<null|User>}
      */
-    static async subscribe(login, password, email,isAdmin,isPreparator) {
+    static async subscribe(login, password, email,isAdmin,isStaff) {
         //check if user with this email already exists
         const emails = await User.findOne({email});
         if(emails)
@@ -27,11 +27,11 @@ class AuthController {
             return null;
 
         const user = new User({
-            login: login,
+            login,
             password: SecurityUtil.hashPassword(password),
-            email: email,
-            isAdmin: isAdmin,
-            isPreparator: isPreparator
+            email,
+            isAdmin,
+            isStaff
         });
         await user.save();
         return user;
@@ -61,7 +61,7 @@ class AuthController {
     }
 
     static async getUserById(id) {
-        const user = await User.findOne({_id: session.uid});
+        const user = await User.findOne({_id: id});
         return user;
     }
   
