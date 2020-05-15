@@ -150,6 +150,11 @@ class CommandController {
         const commands = await Command.find({staff: null}).populate('products').populate('menus');
         return commands;
     }
+
+    static async getHistory(customerId){
+        const commands = await Command.find({customer : customerId});
+        return commands;
+    }
 }
 
 module.exports = CommandController;

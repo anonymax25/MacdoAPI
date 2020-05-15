@@ -42,6 +42,21 @@ module.exports = function (app) {
         }
     });
 
+    app.get('/command/history', AuthMiddleware.auth(), bodyParser.json(), async (req, res) => {
+        if(req.body.command) {
+            try {
+                const commands = await CommandController.getHistory(req.body.customer);
+                if (commands) {
+                    res.status(200).json(commands);
+                } else {
+                    res.status(409).end();
+                }
+            } catch (e) {
+                res.status(500).json(e);
+            }
+        }
+    });
+
     app.get('/command/:id', AuthMiddleware.auth(), bodyParser.json(), async (req, res) => {
         try {
             const command = await CommandController.getById(req.params.id);
