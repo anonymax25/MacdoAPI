@@ -1,3 +1,5 @@
+
+
 const models = require('../models');
 const User = models.User;
 const Session = models.Session;
@@ -79,6 +81,17 @@ class AuthController {
         return user;
     }
 
+    static async getAllUsers(isStaff, isAdmin){
+        return  await User.find({isStaff, isAdmin});
+    }
+
+    static async deleteUser(id){
+        const res = await User.deleteOne({_id: id});
+        if(res.deletedCount === 1){
+            return true;
+        }
+        return false;
+    }
     /**
      *
      * @param token

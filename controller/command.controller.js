@@ -72,7 +72,7 @@ class CommandController {
      */
     static async validateCommand(id) {
         const command = await Command.findOne({_id: id}).populate('products').populate('menus').populate('ingredients').populate('accessories').populate('supplements');
-        if(command.staff === null){
+        if(command.isValid || command.staff === null){
             return false;
         }
 
@@ -83,6 +83,15 @@ class CommandController {
             return true;
         }
         return false;
+    }
+
+    static async isStaffOfCommand(commandId,staffId){
+        const command = await Command.findOne({_id: commandId});
+        if(command){
+            return command.staff === staffId
+        }else{
+            return false
+        }
     }
 
     /**
@@ -133,6 +142,12 @@ class CommandController {
         });
     }
 
+    static async getAllNoStaff(){
+        const commands = await Command.find({staff: null, isValid: false}).populate('products').populate('menus');
+        return commands;
+    }
+
+
     /**
      *
      * @param id
@@ -155,9 +170,12 @@ class CommandController {
         }
     }
 
-    static async getAllNoStaff(){
-        const commands = await Command.find({staff: null, isValid: false}).populate('products').populate('menus');
-        return commands;
+    static async getCommandNotValidatedOfStaff(staffId){
+        return await Command.find({staff: staffId, isValid: false});
+    }
+
+    static async getCommandValidatedOfStaff(staffId){
+        return await Command.find({staff: staffId, isValid: true});
     }
 
     static async getHistory(customerId){
