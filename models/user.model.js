@@ -6,7 +6,7 @@ const userSchema = new Schema({
     password: String,
     email: String,
     isAdmin: Boolean,
-    isPeparator: Boolean
+    isStaff: Boolean
 });
 
 module.exports = mongoose.model('User',userSchema);

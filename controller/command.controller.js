@@ -1,9 +1,9 @@
 const models = require('../models');
 const Command = models.Command;
 
-const UserController = require('./controller').AuthController;
-const MenuController = require('./controller').MenuController;
-const ProductsController = require('./controller').ProductsController;
+const UserController = require('./auth.controller');
+const MenuController = require('./menu.controller');
+const ProductsController = require('./product.controller');
 const IngredientController = require('./ingredients.controller');
 const AccessoryController = require('./accessory.controller');
 const SupplementController = require('./supplement.controller');
@@ -22,17 +22,17 @@ class CommandController {
          let price = 0;
          let res;
 
-         menus.forEach(menu_id => {
-            res = MenuController.getById({menu_id});
+         for (const menu_id of menus) {
+            res = await MenuController.getById(menu_id);
             price += res.price;
-         });
+         }
 
-         products.forEach(product_id => {
-            res = ProductsController.getProductById({product_id})
+        for (const product_id of products) {
+            res = await ProductsController.getProductById(product_id);
             price += res.price;
-        });
-   
-        const command = new Command({
+        }
+
+      const command = new Command({
             customer,
             products,
             menus,
@@ -72,12 +72,26 @@ class CommandController {
      */
     static async validateCommand(id) {
         const command = await Command.findOne({_id: id}).populate('products').populate('menus').populate('ingredients').populate('accessories').populate('supplements');
+        if(command.isValid || command.staff === null){
+            return false;
+        }
+
         this.removeStockFromCommand(command);
+
         const res = await Command.updateOne({_id: id}, {isValid: true});
         if(res.nModified === 1) {
             return true;
         }
         return false;
+    }
+
+    static async isStaffOfCommand(commandId,staffId){
+        const command = await Command.findOne({_id: commandId});
+        if(command){
+            return command.staff === staffId
+        }else{
+            return false
+        }
     }
 
     /**
@@ -128,6 +142,12 @@ class CommandController {
         });
     }
 
+    static async getAllNoStaff(){
+        const commands = await Command.find({staff: null, isValid: false}).populate('products').populate('menus');
+        return commands;
+    }
+
+
     /**
      *
      * @param id
@@ -135,19 +155,31 @@ class CommandController {
      * @return {Promise<boolean>}
      */
     static async assignPreparator(id, staff_id) {
-        const staff = await UserController.getUserById({staff_id});
+        const staff = await UserController.getUserById(staff_id);
 
-        if (staff.isPreparator) {
-            const res = await Command.updateOne({_id: id}, {staff: staff_id});
+        if (staff.isStaff) {
+            const res = await Command.updateOne({_id: id}, {staff: staff._id});
 
             if (res.nModified === 1) {
                 return true;
+            }else{
+                return false;
             }
+        }else{
+            return false;
         }
     }
 
-    static async getAllNoStaff(){
-        const commands = await Command.find({staff: null}).populate('products').populate('menus');
+    static async getCommandNotValidatedOfStaff(staffId){
+        return await Command.find({staff: staffId, isValid: false});
+    }
+
+    static async getCommandValidatedOfStaff(staffId){
+        return await Command.find({staff: staffId, isValid: true});
+    }
+
+    static async getHistory(customerId){
+        const commands = await Command.find({customer : customerId});
         return commands;
     }
 }

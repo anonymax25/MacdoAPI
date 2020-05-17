@@ -19,6 +19,11 @@ class AuthMiddleware {
                 res.status(403).end();
                 return;
             }
+            //normal user, not admin or staff
+            if(user.isStaff || user.isAdmin) {
+                res.status(403).end();
+                return;
+            }
             req.user = user;
             next();
         }
@@ -33,7 +38,12 @@ class AuthMiddleware {
             }
             const token = authorization.slice(7);
             const staff = await AuthController.userFromToken(token);
-            if(!staff && !staff.isPeparator) {
+            if(!staff){
+                res.status(403).end();
+                return;
+            }
+
+            if(!staff.isStaff || staff.isAdmin) {
                 res.status(403).end();
                 return;
             }

@@ -50,14 +50,12 @@ class AccessoryController {
      * @return {Promise<boolean|string[]>}
      */
     static async deleteById(id) {
-
         // check if accessory is not used in any product
         const products = await Product.find({accessories: id}).exec();
         const res = products.map((product) => product = product._id);
         if(res.length > 0){
             return res;
         }
-
 
         // check if accessory is not used in any menus
         const menus = await Menu.find({accessories: id}).exec();
@@ -67,7 +65,7 @@ class AccessoryController {
         }
 
         const res3 = await Accessory.deleteOne({_id: id});
-        if(res3.deletedCount != 1)
+        if(res3.deletedCount !== 1)
             return false;
         return true;
     }
@@ -82,7 +80,7 @@ class AccessoryController {
         const accessory = await Accessory.findOne({_id: id});
 
         const res = await Accessory.updateOne({_id: id},{count: accessory.count + relativeDifferenceToAdd});
-        if(res.nModified != 1)
+        if(res.nModified !== 1)
             return false;
         return true;
     }

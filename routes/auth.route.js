@@ -2,7 +2,7 @@ const bodyParser = require('body-parser');
 const AuthController = require('../controller').AuthController;
 
 module.exports = function (app) {
-    app.post('/subscribe', bodyParser.json(), async (req, res) => {
+    app.post('/user/subscribe', bodyParser.json(), async (req, res) => {
         let body = req.body;
 
         const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -24,7 +24,7 @@ module.exports = function (app) {
         }
     });
 
-    app.post('/login', bodyParser.json(), async (req, res) => {
+    app.post('/user/login', bodyParser.json(), async (req, res) => {
         let body = req.body;
         if (body.login && body.password) {
             try {
@@ -42,25 +42,7 @@ module.exports = function (app) {
         }
     });
 
-    app.delete('/logout/:token', bodyParser.json(), async (req, res) => {
-        let token = req.params.token;
-        if(token){
-            try {
-                const success = await AuthController.logout(token);
-                if (success) {
-                    res.status(204).end();
-                } else {
-                    res.status(401).end();
-                }
-            } catch (e) {
-                res.status(400).json(e);
-            }
-        }else{
-            res.status(400).end();
-        }
-    });
-
-    app.get('/logout/:token', bodyParser.json(), async (req, res) => {
+    app.delete('/user/logout/:token', bodyParser.json(), async (req, res) => {
         let token = req.params.token;
         if(token){
             try {
