@@ -19,6 +19,11 @@ class AuthMiddleware {
                 res.status(403).end();
                 return;
             }
+            //normal user, not admin or staff
+            if(user.isStaff || user.isAdmin) {
+                res.status(403).end();
+                return;
+            }
             req.user = user;
             next();
         }
@@ -37,7 +42,8 @@ class AuthMiddleware {
                 res.status(403).end();
                 return;
             }
-            if(!staff.isStaff) {
+
+            if(!staff.isStaff || staff.isAdmin) {
                 res.status(403).end();
                 return;
             }
