@@ -44,7 +44,7 @@ module.exports = function (app) {
         try {
             const ingredient = await ProductsController.getProductById(req.params.id,true);
             if (ingredient) {
-                res.status(201).json(ingredient);
+                res.status(200).json(ingredient);
             } else {
                 res.status(409).end();
             }

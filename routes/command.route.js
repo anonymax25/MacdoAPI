@@ -75,7 +75,7 @@ module.exports = function (app) {
         }
     });
 
-    /**
+    /**st
      * @description get les commandes pas validé d'un staff
      */
     app.get('/command/staff/notvalid', AuthMiddleware.staffAuth(), async (req, res) => {
@@ -95,7 +95,7 @@ module.exports = function (app) {
     });
 
     /**
-     * @description get les commandes pas validé d'un staff
+     * @description get les commandes validé d'un staff
      */
     app.get('/command/staff/valid', AuthMiddleware.staffAuth(), async (req, res) => {
         if(req.user._id) {

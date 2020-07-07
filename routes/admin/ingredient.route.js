@@ -27,7 +27,7 @@ module.exports = function (app) {
         try {
             const ingredients = await IngredientsController.getIngredients();
             if (ingredients) {
-                res.status(201).json(ingredients);
+                res.status(200).json(ingredients);
             } else {
                 res.status(409).end();
             }
@@ -41,7 +41,7 @@ module.exports = function (app) {
         try {
             const ingredient = await IngredientsController.getIngredientById(req.params.id);
             if (ingredient) {
-                res.status(201).json(ingredient);
+                res.status(200).json(ingredient);
             } else {
                 res.status(409).end();
             }

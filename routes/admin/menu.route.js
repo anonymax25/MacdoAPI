@@ -44,7 +44,7 @@ module.exports = function (app) {
         try {
             const menu = await MenuController.getById(req.params.id);
             if (menu) {
-                res.status(201).json(menu);
+                res.status(200).json(menu);
             } else {
                 res.status(409).end();
             }
@@ -70,59 +70,4 @@ module.exports = function (app) {
         }
 
     });
-
-    /*
-    app.put('/admin/product/removeingredient/:id', AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
-        if (req.params.id && req.body.id) {
-            try {
-                const success = await ProductsController.removeIngredientFromProductById(req.params.id, req.body.id);
-                if (success) {
-                    res.status(204).end();
-                } else {
-                    res.status(409).end();
-                }
-            } catch (e) {
-                res.status(500).json(e);
-            }
-        } else {
-            res.status(400).end();
-        }
-    });
-
-    app.put('/admin/product/addingredient/:id', AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
-        if (req.params.id && req.body.id) {
-            try {
-                const success = await ProductsController.addIngredientToProductById(req.params.id, req.body.id);
-                if (success) {
-                    res.status(204).end();
-                } else {
-                    res.status(409).end();
-                }
-            } catch (e) {
-                res.status(500).json(e);
-            }
-        } else {
-            res.status(400).end();
-        }
-    });
-    */
-    /*
-    app.put('/admin/product/:id', AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
-        if (req.params.id && req.body.count) {
-            try {
-                const success = await ProductsController.updateRealtiveIngredientCount(req.params.id, req.body.count);
-                if (success) {
-                    res.status(204).end();
-                } else {
-                    res.status(409).end();
-                }
-            } catch (e) {
-                res.status(500).json(e);
-            }
-        } else {
-            res.status(400).end();
-        }
-    });
-
-     */
 }

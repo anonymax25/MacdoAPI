@@ -1,0 +1,1700 @@
+{
+	"info": {
+		"_postman_id": "f12adf3b-7370-4389-960b-1b169d71a066",
+		"name": "MacdoApi copy",
+		"description": "Macdo API Julien, Lou et Maxime.\nProjet NodeJS 2020, Mr Briatte",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Ingredients / stock",
+					"item": [
+						{
+							"name": "Insert ingerdient",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"lettuce\",\n\t\"weight\": 125\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/admin/ingredient",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"ingredient"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete ingredient by id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/admin/ingredient/5e773c81a4fc7c8c38109ee4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"ingredient",
+										"5e773c81a4fc7c8c38109ee4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all ingredients",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/admin/ingredient",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"ingredient"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get ingredient by id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/admin/ingredient/5e773c5aa4fc7c8c38109ee1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"ingredient",
+										"5e773c5aa4fc7c8c38109ee1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update stock to ingredient by id with count (-6, 5, -7, ...)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"count\": -4\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/admin/ingredient/5e773c5aa4fc7c8c38109ee1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"ingredient",
+										"5e773c5aa4fc7c8c38109ee1"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3c42faad-6b2c-4ce2-9b20-f93a9a9e2a6f",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "13618062-d852-4446-a1fa-ac57ae1f60cb",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Accessory / stock",
+					"item": [
+						{
+							"name": "Insert accessory",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"lettuce\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/admin/supplement",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"supplement"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete accessory by id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/admin/accessory/5e773c81a4fc7c8c38109ee4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"accessory",
+										"5e773c81a4fc7c8c38109ee4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all accessory",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/admin/accessory",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"accessory"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get accessory by id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/admin/accessory/5e7784be3bd20c7e984a45f3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"accessory",
+										"5e7784be3bd20c7e984a45f3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update stock to ingredient by id with count (-6, 5, -7, ...)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"count\": -4\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/admin/ingredient/{{ingredientID}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"ingredient",
+										"{{ingredientID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "cb9ecb81-184b-45f8-a646-396947fdc159",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "63aad83a-57e5-4284-8577-f0ccd5fafe6d",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Supplement / stock",
+					"item": [
+						{
+							"name": "Insert supplement",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"lettuce\",\n\t\"weight\": 125\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/admin/supplement",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"supplement"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete supplement by id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/admin/supplement/{{supplementID}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"supplement",
+										"{{supplementID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all supplements",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/admin/supplement",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"supplement"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get supplement by id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/admin/supplement/{{supplementID}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"supplement",
+										"{{supplementID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update stock to supplement by id with count (-6, 5, -7, ...)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"count\": -4\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/admin/supplement/{{supplementID}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"supplement",
+										"{{supplementID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1f07a772-42ac-4150-aa43-37b65947c215",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "439f25d2-e0cf-4766-96ae-dbf5882ba2a7",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Product",
+					"item": [
+						{
+							"name": "add product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"XL Fries\",\n\t\"price\": 2.90,\n\t\"ingredients\": [\n\t\t\t\"5eb3dd7b089dd2700cc625ae\",\n\t\t\t\"5eb3dd7b089dd2700cc625ae\"\n\t\t],\n\t\"accessories\": [\n\t\t\t\"5eb3ddd5089dd2700cc625af\"\n\t\t],\n\t\"supplements\": [\n\t\t\t\"5eb3def0089dd2700cc625b2\"\n\t\t]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/admin/product",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"product"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET all products",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"doPopulate\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/admin/product",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"product"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET product by ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/admin/product/5e7ddab154c2fd63f8347a60",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"product",
+										"5e7ddab154c2fd63f8347a60"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE Product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/admin/product/5e7dd6524cba29ddb0ea5917",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"product",
+										"5e7dd6524cba29ddb0ea5917"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove ingredient from product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\": \"5e773c5fa4fc7c8c38109ee2\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/admin/product/removeingredient/5e7e18ab855152692c8bb564",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"product",
+										"removeingredient",
+										"5e7e18ab855152692c8bb564"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4a00e8f8-4a61-4561-8b7a-c29e93e8f01d",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "baacf107-aa24-4760-b0ba-4c70d5191356",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Menu",
+					"item": [
+						{
+							"name": "add menu",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"Best of Big-mac\",\n\t\"price\": 8.90,\n\t\"products\": [\n\t\t\t\"5e8335f135f74d3e04004802\",\n\t\t\t\"5eb3e3b6089dd2700cc625b3\"\n\t\t],\n\t\"accessories\": [\n\t\t\"5eb3e524fd566e19489dc948\"\n\t\t],\n\t\"supplements\": [\n\t\t\t\"5e831d9b4d48df69307106c0\"\n\t\t]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/admin/menu",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"menu"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get ALL menus",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"doPopulate\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/admin/menu",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"menu"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get menu  by ID",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"doPopulate\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/admin/menu/5eb3e5ffeca17784781ad76f",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"menu",
+										"5eb3e5ffeca17784781ad76f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE menu by ID Copy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"doPopulate\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/admin/menu/5eb3e5ffeca17784781ad76f",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"menu",
+										"5eb3e5ffeca17784781ad76f"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Management",
+					"item": [
+						{
+							"name": "Insert admin",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"login\": \"max\",\n\t\"password\": \"max\",\n\t\"email\": \"max@gmail.com\",\n\t\"adminPassword\": \"julienmaximelou\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/admin/subscribe",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"subscribe"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Insert preparator",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"login\": \"john\",\n\t\"password\": \"john\",\n\t\"email\": \"john@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/admin/preparator",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"preparator"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all preparator",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/admin/preparator",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"preparator"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete preparator",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/admin/preparator",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"preparator"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0ade3c02-ed38-4e00-88f9-a5515b7120ca",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "6042d8f8-947f-4ef9-a2b8-f97f7302bca0",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Stock",
+					"item": [
+						{
+							"name": "Bulk stock management",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthTokenUser}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"ingredients\": [\n\t\t\t{\n\t\t\t\t\"id\": \"5e7f33cc06f3c10884636a3c\",\n\t\t\t\t\"count\": 10\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"id\": \"5e7f33d006f3c10884636a3d\",\n\t\t\t\t\"count\": 10\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"id\": \"5e7f33d306f3c10884636a3e\",\n\t\t\t\t\"count\": 10\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"id\": \"5eb3dd7b089dd2700cc625ae\",\n\t\t\t\t\"count\": 10\n\t\t\t}\n\t\t],\n\t\"accessories\": [\n\t\t\t{\n\t\t\t\t\"id\": \"5e7f33ec06f3c10884636a3f\",\n\t\t\t\t\"count\": 10\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"id\": \"5eb3ddd5089dd2700cc625af\",\n\t\t\t\t\"count\": 10\n\t\t\t}\n\t\t],\n\t\"supplements\": [\n\t\t\t{\n\t\t\t\t\"id\": \"5eb3def0089dd2700cc625b2\",\n\t\t\t\t\"count\": 10\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"id\": \"5ea14f63a0083917ed25db77\",\n\t\t\t\t\"count\": 10\n\t\t\t}\n\t\t]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/admin/stock",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"admin",
+										"stock"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "22198967-7a73-4c0c-b221-dbc1afb1d727",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "8325ec47-a372-4e71-bd48-ae513fdba49b",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Command",
+			"item": [
+				{
+					"name": "post command",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customer\": null\r\n    ,\r\n    \"products\": [\r\n        \"5e8335f135f74d3e04004802\"\r\n    ],\r\n    \"menus\": [\r\n    \t\"5eb3eba6150e5a8e1c32cab7\"\r\n    \t],\r\n    \"price\": 12,\r\n    \"staff\": \"5ebd7ada6d6ddd082c1ea7d4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/command",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"command"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all Commands no staff (staff)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AuthTokenUser}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/command/noStaff",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"command",
+								"noStaff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assign command to staff (staff)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AuthTokenUser}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/command/staff/5f04a3494ccf5507add61b52",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"command",
+								"staff",
+								"5f04a3494ccf5507add61b52"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get commandes en cours d'un staff (staff)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AuthTokenUser}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/command/staff/notvalid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"command",
+								"staff",
+								"notvalid"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validate Command (staff)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/command/valid/5eb588180add29b9c0541e73",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"command",
+								"valid",
+								"5eb588180add29b9c0541e73"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get commandes validés d'un staff (staff)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AuthTokenUser}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/command/staff/valid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"command",
+								"staff",
+								"valid"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all Commands (admin)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/command",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"command"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get command history (user)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "c6e2e6244c4b50712fa5a41a944e8c4686ac95cfbf9671cb021852",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customer\": \"5e7f2c4406f3c10884636a37\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/command/history",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"command",
+								"history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get command by id (user)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "c6e2e6244c4b50712fa5a41a944e8c4686ac95cfbf9671cb021852",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customer\": \"5e7f2c4406f3c10884636a37\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/command/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"command",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Subscirbe a User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"login\": \"juju\",\n\t\"password\": \"juju\",\n\t\"email\": \"juju@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/user/subscribe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"subscribe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Subscirbe a User Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"login\": \"juju\",\n\t\"password\": \"juju\",\n\t\"email\": \"juju@gmail.com\",\n\t\"adminPassword\": \"julienmaximelou\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/user/subscribe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"subscribe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login / get session token (all) preparator account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"login\": \"john\",\n\t\"password\": \"john\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login / get session token (all) user classic",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"login\": \"yana\",\n\t\"password\": \"yana\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login / get session token (all) admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"login\": \"max\",\n\t\"password\": \"max\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user from token (all)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AuthTokenUser}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/user/userFromToken",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"userFromToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout session (all)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/logout/{{AuthTokenUser}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"logout",
+								"{{AuthTokenUser}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b449ddbe-d4a1-4996-88ea-fd4871121d85",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "fb13d71a-8fad-454a-9914-7f99a3a706a9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "85a0db06-055c-46ae-89bf-34a9891a076e",
+			"key": "URL",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
