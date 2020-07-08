@@ -53,7 +53,7 @@ module.exports = function (app) {
                     res.status(401).end();
                 }
             } catch (e) {
-                res.status(400).json(e);
+                res.status(400).json(e.message);
             }
         }else{
             res.status(400).end();

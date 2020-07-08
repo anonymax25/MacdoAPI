@@ -14,8 +14,7 @@ module.exports = function (app) {
                     res.status(409).end();
                 }
             } catch (e) {
-                console.log(e.message);
-                res.status(500).json(e);
+                res.status(500).json(e.message);
             }
 
         } else {
@@ -32,8 +31,7 @@ module.exports = function (app) {
                 res.status(409).end();
             }
         } catch (e) {
-            console.log(e.message);
-            res.status(500).json(e);
+            res.status(500).json(e.message);
         }
     });
 
@@ -46,8 +44,7 @@ module.exports = function (app) {
                 res.status(409).end();
             }
         } catch (e) {
-            console.log(e.message);
-            res.status(500).json(e);
+            res.status(500).json(e.message);
         }
     });
 
@@ -65,8 +62,7 @@ module.exports = function (app) {
                     res.status(409).end();
                 }
             } catch (e) {
-                console.log(e.message);
-                res.status(500).json(e);
+                res.status(500).json(e.message);
             }
         } else {
             res.status(400).end();
@@ -84,8 +80,7 @@ module.exports = function (app) {
                     res.status(409).end();
                 }
             } catch (e) {
-                console.log(e.message);
-                res.status(500).json(e);
+                res.status(500).json(e.message);
             }
         } else {
             res.status(400).end();

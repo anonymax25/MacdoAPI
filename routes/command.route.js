@@ -18,7 +18,7 @@ module.exports = function (app) {
                 }
             } catch (e) {
                 console.log(e);
-                res.status(500).json(e);
+                res.status(500).json(e.message);
             }
         } else {
             res.status(400).end();
@@ -35,7 +35,7 @@ module.exports = function (app) {
                 res.status(200).json(products);
             }
         } catch (e) {
-            res.status(500).json(e);
+            res.status(500).json(e.message);
         }
     });
 
@@ -51,7 +51,7 @@ module.exports = function (app) {
                 res.status(409).end();
             }
         } catch (e) {
-            res.status(500).json(e);
+            res.status(500).json(e.message);
         }
     });
 
@@ -68,7 +68,7 @@ module.exports = function (app) {
                     res.status(409).end();
                 }
             } catch (e) {
-                res.status(500).json(e);
+                res.status(500).json(e.message);
             }
         }else{
             res.status(400).end();
@@ -87,7 +87,7 @@ module.exports = function (app) {
                 }
             } catch (e) {
                 console.log(e);
-                res.status(500).json(e);
+                res.status(500).json(e.message);
             }
         } else {
             res.status(400).end();
@@ -106,7 +106,7 @@ module.exports = function (app) {
                 }
             } catch (e) {
                 console.log(e);
-                res.status(500).json(e);
+                res.status(500).json(e.message);
             }
         } else {
             res.status(400).end();
@@ -125,7 +125,7 @@ module.exports = function (app) {
                 res.status(409).end();
             }
         } catch (e) {
-            res.status(500).json(e);
+            res.status(500).json(e.message);
         }
     });
 
@@ -145,7 +145,7 @@ module.exports = function (app) {
                res.status(401).end();
            }
        } catch (e) {
-           res.status(500).json(e);
+           res.status(500).json(e.message);
            console.log(e);
        }
     });
@@ -162,7 +162,7 @@ module.exports = function (app) {
                 }
             } catch (e) {
                 console.log(e);
-                res.status(500).json(e);
+                res.status(500).json(e.message);
             }
         } else {
             res.status(400).end();
