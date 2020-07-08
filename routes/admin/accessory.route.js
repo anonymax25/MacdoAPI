@@ -22,7 +22,7 @@ module.exports = function (app) {
         }
     });
 
-    app.get('/admin/accessory', AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
+    app.get('/admin/accessory', bodyParser.json(), async (req, res) => {
         try {
             const ingredients = await AccessoryController.getAll();
             if (ingredients) {
@@ -35,7 +35,7 @@ module.exports = function (app) {
         }
     });
 
-    app.get('/admin/accessory/:id', AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
+    app.get('/admin/accessory/:id', bodyParser.json(), async (req, res) => {
         try {
             const ingredient = await AccessoryController.getById(req.params.id);
             if (ingredient) {
