@@ -19,14 +19,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ba0baf1-7c3f-4d1b-ad5c-9bcc5c97fbe8" name="Default Changelist" comment="add - /user in front of all auth and user routes">
+    <list default="true" id="2ba0baf1-7c3f-4d1b-ad5c-9bcc5c97fbe8" name="Default Changelist" comment="fix errors">
+      <change afterPath="$PROJECT_DIR$/postman_test/Soutenance Macdo.postman_environment.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin/ingredient.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin/ingredient.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin/menu.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin/menu.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin/product.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin/product.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/admin/supplement.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin/supplement.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/command.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/command.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/security.utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/security.utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MacdoApi copy.postman_collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/postman_test/MacdoApi copy.postman_collection.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/auth.middleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/auth.middleware.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/user.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/user.route.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +58,22 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\natin\OneDrive\Documents\ESGI\Cours\3eme année\2eme semestre\Nodejs\Projet\MacdoAPI" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.start-dev">
+    <configuration name="start-dev" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start-dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -69,6 +84,10 @@
       <envs />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="npm.start" />
+      <item itemvalue="npm.start-dev" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -84,7 +103,8 @@
       <workItem from="1589618786920" duration="596000" />
       <workItem from="1589706842404" duration="11805000" />
       <workItem from="1589893235888" duration="1295000" />
-      <workItem from="1594139918818" duration="1925000" />
+      <workItem from="1594139918818" duration="2878000" />
+      <workItem from="1594210624035" duration="1634000" />
     </task>
     <task id="LOCAL-00001" summary="add - /user in front of all auth and user routes">
       <created>1589707327988</created>
@@ -100,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589734601599</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fix errors">
+      <created>1594142344119</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1594142344119</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,12 +159,14 @@
     <option name="SHOW_UNVERSIONED_FILES_WHILE_COMMIT" value="false" />
     <MESSAGE value="add - /user in front of all auth and user routes" />
     <MESSAGE value="general fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="general fixes" />
+    <MESSAGE value="fix errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix errors" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589028164669">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="297" y="90" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1594210673810">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
+    <state x="297" y="90" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.0.1536.824/0.0.2048.1112@0.0.2048.1112" timestamp="1594210673810" />
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1589028164669" />
     <state x="278" y="0" key="CommitChangelistDialog2" timestamp="1589748437096">
       <screen x="0" y="0" width="1536" height="824" />
@@ -151,25 +180,30 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="466" y="333" key="GitCloneDialog/0.0.1536.824@0.0.1536.824" timestamp="1589030267439" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1589788463725">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2005" height="305" key="GridCell.Tab.0.bottom" timestamp="1594143835039">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
+    <state width="2005" height="305" key="GridCell.Tab.0.bottom/-1920.0.1536.824/0.0.2048.1112@0.0.2048.1112" timestamp="1594143835039" />
     <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589788463725" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1589788463725">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2005" height="305" key="GridCell.Tab.0.center" timestamp="1594143835038">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
+    <state width="2005" height="305" key="GridCell.Tab.0.center/-1920.0.1536.824/0.0.2048.1112@0.0.2048.1112" timestamp="1594143835038" />
     <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1589788463725" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1589788463725">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2005" height="305" key="GridCell.Tab.0.left" timestamp="1594143835038">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
+    <state width="2005" height="305" key="GridCell.Tab.0.left/-1920.0.1536.824/0.0.2048.1112@0.0.2048.1112" timestamp="1594143835038" />
     <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1589788463725" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1589788463725">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2005" height="305" key="GridCell.Tab.0.right" timestamp="1594143835039">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
+    <state width="2005" height="305" key="GridCell.Tab.0.right/-1920.0.1536.824/0.0.2048.1112@0.0.2048.1112" timestamp="1594143835039" />
     <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1589788463725" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1589748474769">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="481" y="197" key="Vcs.Push.Dialog.v2" timestamp="1594142592297">
+      <screen x="0" y="0" width="2048" height="1112" />
     </state>
+    <state x="481" y="197" key="Vcs.Push.Dialog.v2/-1920.0.1536.824/0.0.2048.1112@0.0.2048.1112" timestamp="1594142592297" />
     <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1589748474769" />
     <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589788410757">
       <screen x="0" y="0" width="1536" height="824" />

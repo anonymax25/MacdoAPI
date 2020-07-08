@@ -20,7 +20,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{AuthTokenUser}}",
+											"value": "{{AuthUserToken}}",
 											"type": "string"
 										}
 									]
@@ -29,7 +29,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"name\": \"lettuce\",\n\t\"weight\": 125\n}",
+									"raw": "{\n\t\"name\": \"sesam seed\",\n\t\"weight\": 125\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -59,7 +59,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{AuthTokenUser}}",
+											"value": "{{AuthUserToken}}",
 											"type": "string"
 										}
 									]
@@ -220,7 +220,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{AuthTokenUser}}",
+											"value": "{{AuthUserToken}}",
 											"type": "string"
 										}
 									]
@@ -259,7 +259,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{AuthTokenUser}}",
+											"value": "{{AuthUserToken}}",
 											"type": "string"
 										}
 									]
@@ -320,7 +320,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{AuthTokenUser}}",
+											"value": "{{AuthUserToken}}",
 											"type": "string"
 										}
 									]
@@ -420,7 +420,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{AuthTokenUser}}",
+											"value": "{{AuthUserToken}}",
 											"type": "string"
 										}
 									]
@@ -459,7 +459,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{AuthTokenUser}}",
+											"value": "{{AuthUserToken}}",
 											"type": "string"
 										}
 									]
@@ -551,7 +551,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{AuthTokenUser}}",
+											"value": "{{AuthUserToken}}",
 											"type": "string"
 										}
 									]
@@ -620,7 +620,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{AuthTokenUser}}",
+											"value": "{{AuthUserToken}}",
 											"type": "string"
 										}
 									]
@@ -662,7 +662,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{AuthTokenUser}}",
+											"value": "{{AuthUserToken}}",
 											"type": "string"
 										}
 									]
@@ -701,7 +701,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{AuthTokenUser}}",
+											"value": "{{AuthUserToken}}",
 											"type": "string"
 										}
 									]
@@ -709,7 +709,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3001/admin/product/5e7ddab154c2fd63f8347a60",
+									"raw": "http://localhost:3001/admin/product/5e8335f135f74d3e04004802",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -718,7 +718,7 @@
 									"path": [
 										"admin",
 										"product",
-										"5e7ddab154c2fd63f8347a60"
+										"5e8335f135f74d3e04004802"
 									]
 								}
 							},
@@ -732,7 +732,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{AuthTokenUser}}",
+											"value": "{{AuthUserToken}}",
 											"type": "string"
 										}
 									]
@@ -763,7 +763,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{AuthTokenUser}}",
+											"value": "{{AuthUserToken}}",
 											"type": "string"
 										}
 									]
@@ -833,7 +833,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{AuthTokenUser}}",
+											"value": "{{AuthUserToken}}",
 											"type": "string"
 										}
 									]
@@ -1008,6 +1008,16 @@
 						{
 							"name": "Insert preparator",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthUserToken}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -1037,6 +1047,16 @@
 						{
 							"name": "get all preparator",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AuthUserToken}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -1111,7 +1131,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{AuthTokenUser}}",
+											"value": "{{AuthUserToken}}",
 											"type": "string"
 										}
 									]
@@ -1120,7 +1140,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n\t\"ingredients\": [\n\t\t\t{\n\t\t\t\t\"id\": \"5e7f33cc06f3c10884636a3c\",\n\t\t\t\t\"count\": 10\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"id\": \"5e7f33d006f3c10884636a3d\",\n\t\t\t\t\"count\": 10\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"id\": \"5e7f33d306f3c10884636a3e\",\n\t\t\t\t\"count\": 10\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"id\": \"5eb3dd7b089dd2700cc625ae\",\n\t\t\t\t\"count\": 10\n\t\t\t}\n\t\t],\n\t\"accessories\": [\n\t\t\t{\n\t\t\t\t\"id\": \"5e7f33ec06f3c10884636a3f\",\n\t\t\t\t\"count\": 10\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"id\": \"5eb3ddd5089dd2700cc625af\",\n\t\t\t\t\"count\": 10\n\t\t\t}\n\t\t],\n\t\"supplements\": [\n\t\t\t{\n\t\t\t\t\"id\": \"5eb3def0089dd2700cc625b2\",\n\t\t\t\t\"count\": 10\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"id\": \"5ea14f63a0083917ed25db77\",\n\t\t\t\t\"count\": 10\n\t\t\t}\n\t\t]\n}",
+									"raw": "{\n\t\"ingredients\": [\n\t\t\t{\n\t\t\t\t\"id\": \"5e807e8d06f3c10884636a44\",\n\t\t\t\t\"count\": 70\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"id\": \"5e807e8d06f3c10884636a44\",\n\t\t\t\t\"count\": 60\n\t\t\t}\n\t\t],\n\t\"accessories\": [\n\t\t],\n\t\"supplements\": [\n\t\t]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1181,7 +1201,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"customer\": null\r\n    ,\r\n    \"products\": [\r\n        \"5e8335f135f74d3e04004802\"\r\n    ],\r\n    \"menus\": [\r\n    \t\"5eb3eba6150e5a8e1c32cab7\"\r\n    \t],\r\n    \"price\": 12,\r\n    \"staff\": \"5ebd7ada6d6ddd082c1ea7d4\"\r\n}",
+							"raw": "{\r\n    \"customer\": \"5ec1576df105b277a4b86ca7\"\r\n    ,\r\n    \"products\": [\r\n        \"5e8335f135f74d3e04004802\"\r\n    ],\r\n    \"menus\": [\r\n    \t\"5eb3eba6150e5a8e1c32cab7\"\r\n    \t]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1210,7 +1230,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{AuthTokenUser}}",
+									"value": "{{AuthUserToken}}",
 									"type": "string"
 								}
 							]
@@ -1240,7 +1260,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{AuthTokenUser}}",
+									"value": "{{AuthUserToken}}",
 									"type": "string"
 								}
 							]
@@ -1248,7 +1268,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/command/staff/5f04a3494ccf5507add61b52",
+							"raw": "http://localhost:3001/command/staff/5f05bb3eb0f0dbaacc3a488f",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1257,7 +1277,7 @@
 							"path": [
 								"command",
 								"staff",
-								"5f04a3494ccf5507add61b52"
+								"5f05bb3eb0f0dbaacc3a488f"
 							]
 						}
 					},
@@ -1297,10 +1317,20 @@
 				{
 					"name": "validate Command (staff)",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AuthUserToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3001/command/valid/5eb588180add29b9c0541e73",
+							"raw": "http://localhost:3001/command/valid/5f05bb3eb0f0dbaacc3a488f",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1309,7 +1339,7 @@
 							"path": [
 								"command",
 								"valid",
-								"5eb588180add29b9c0541e73"
+								"5f05bb3eb0f0dbaacc3a488f"
 							]
 						}
 					},
@@ -1323,7 +1353,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{AuthTokenUser}}",
+									"value": "{{AuthUserToken}}",
 									"type": "string"
 								}
 							]
@@ -1421,33 +1451,21 @@
 				},
 				{
 					"name": "get command by id (user)",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "c6e2e6244c4b50712fa5a41a944e8c4686ac95cfbf9671cb021852",
+									"value": "{{AuthUserToken}}",
 									"type": "string"
 								}
 							]
 						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"customer\": \"5e7f2c4406f3c10884636a37\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:3001/command/",
+							"raw": "http://localhost:3001/command/5f05bb3eb0f0dbaacc3a488f",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1455,7 +1473,7 @@
 							"port": "3001",
 							"path": [
 								"command",
-								""
+								"5f05bb3eb0f0dbaacc3a488f"
 							]
 						}
 					},
@@ -1475,35 +1493,6 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\n\t\"login\": \"juju\",\n\t\"password\": \"juju\",\n\t\"email\": \"juju@gmail.com\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3001/user/subscribe",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3001",
-							"path": [
-								"user",
-								"subscribe"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Subscirbe a User Admin",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"login\": \"juju\",\n\t\"password\": \"juju\",\n\t\"email\": \"juju@gmail.com\",\n\t\"adminPassword\": \"julienmaximelou\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1620,7 +1609,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{AuthTokenUser}}",
+									"value": "{{AuthUserToken}}",
 									"type": "string"
 								}
 							]
@@ -1690,10 +1679,24 @@
 	],
 	"variable": [
 		{
-			"id": "85a0db06-055c-46ae-89bf-34a9891a076e",
+			"id": "9aba8785-abdc-4de2-8815-461069083365",
 			"key": "URL",
-			"value": "",
-			"type": "string"
+			"value": ""
+		},
+		{
+			"id": "f01b3cf6-d75c-40c9-a613-5e37cd7f6c1f",
+			"key": "AdminToken",
+			"value": ""
+		},
+		{
+			"id": "434db944-0e0c-464a-a8cf-d85a7d721e4a",
+			"key": "UserToken",
+			"value": ""
+		},
+		{
+			"id": "448f4353-5cf7-4ce6-bcea-149d72ca9fdc",
+			"key": "PreparatorToken",
+			"value": ""
 		}
 	],
 	"protocolProfileBehavior": {}

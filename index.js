@@ -15,9 +15,14 @@ async function startServer() {
             useCreateIndex: true,
             useUnifiedTopology: true,
             authSource: 'admin'
+        }, function (error) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Connected to DB');
+            }
         });
 
-        console.log(`Connection successful to mongoDB`);
 
         app.use(cors());
 
