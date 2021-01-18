@@ -15,9 +15,10 @@ class AuthController {
      * @param email
      * @param isAdmin
      * @param isStaff
+     * @param address
      * @return {Promise<null|User>}
      */
-    static async subscribe(login, password, email,isAdmin,isStaff) {
+    static async subscribe(login, password, email, isAdmin,isStaff, address) {
         //check if user with this email already exists
         const emails = await User.findOne({email});
         if(emails)
@@ -33,7 +34,8 @@ class AuthController {
             password: SecurityUtil.hashPassword(password),
             email,
             isAdmin,
-            isStaff
+            isStaff,
+            address
         });
         await user.save();
         return user;

@@ -16,6 +16,7 @@ const productSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Supplement'
     }],
+    promoPourcentage: Number
 });
 
 module.exports = mongoose.model('Product',productSchema);

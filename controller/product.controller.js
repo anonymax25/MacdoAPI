@@ -14,9 +14,10 @@ class ProductsController {
      * @param ingredients
      * @param accessories
      * @param supplements
+     * @param promoPourcentage
      * @return {Promise<null|Product>}
      */
-    static async insertProduct(name,price,ingredients,accessories,supplements) {
+    static async insertProduct(name, price, ingredients, accessories, supplements, promoPourcentage) {
         //check if product with this name already exists
         const products = await Product.findOne({name});
         if(products || price <= 0)
@@ -48,7 +49,8 @@ class ProductsController {
             price,
             ingredients,
             accessories,
-            supplements
+            supplements,
+            promoPourcentage
         });
         await product.save();
         return product;
@@ -65,6 +67,21 @@ class ProductsController {
             products = await Product.find().populate('ingredients').populate('accessories').populate('supplements');
         } else {
             products = await Product.find();
+        }
+        return products;
+    }
+    
+    /**
+     *
+     * @param doPopulate
+     * @return {Promise<Product[]>}
+     */
+    static async getProductsWithPromo(doPopulate) {
+        let products = null;
+        if(doPopulate){
+            products = await Product.find({promoPourcentage: { $gt: 0 }}).populate('ingredients').populate('accessories').populate('supplements');
+        } else {
+            products = await Product.find({promoPourcentage: { $gt: 0 }});
         }
         return products;
     }

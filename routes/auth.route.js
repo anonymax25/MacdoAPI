@@ -7,9 +7,9 @@ module.exports = function (app) {
 
         const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-        if (body.login && body.login.length >= 3 && body.password && body.email && regex.test(String(body.email).toLowerCase())) {
+        if (body.login && body.login.length >= 3 && body.password && body.email && body.address && regex.test(String(body.email).toLowerCase())) {
             try {
-                const user = await AuthController.subscribe(body.login, body.password, body.email,false,false);
+                const user = await AuthController.subscribe(body.login, body.password, body.email, body.address,false,false);
                 if (user) {
                     res.status(201).json(user);
                 } else {

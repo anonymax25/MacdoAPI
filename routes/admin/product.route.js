@@ -7,7 +7,7 @@ module.exports = function (app) {
     app.post('/admin/product', AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
         if (req.body.name && req.body.price && req.body.ingredients && req.body.accessories && req.body.supplements) {
             try {
-                const ingredient = await ProductsController.insertProduct(req.body.name, req.body.price, req.body.ingredients, req.body.accessories, req.body.supplements);
+                const ingredient = await ProductsController.insertProduct(req.body.name, req.body.price, req.body.ingredients, req.body.accessories, req.body.supplements, req.body.promoPourcentage ? req.body.promoPourcentage : 0);
                 if (ingredient) {
                     res.status(201).json(ingredient);
                 } else {
@@ -40,9 +40,27 @@ module.exports = function (app) {
         }
     });
 
+    app.get('/admin/product/promo', bodyParser.json(), async (req, res) => {
+        let doPopulate = false;
+        if(req.body.doPopulate){
+            doPopulate = req.body.doPopulate;
+        }
+        try {
+            const products = await ProductsController.getProductsWithPromo(doPopulate);
+            if (products) {
+                res.status(200).json(products);
+            } else {
+                res.status(404).end();
+            }
+        } catch (e) {
+            console.log(e);
+            res.status(500).end();
+        }
+    });
+
     app.get('/admin/product/:id', bodyParser.json(), async (req, res) => {
         try {
-            const ingredient = await ProductsController.getProductById(req.params.id,true);
+            const ingredient = await ProductsController.getProductById(req.params.id, req.body.doPopulate);
             if (ingredient) {
                 res.status(200).json(ingredient);
             } else {

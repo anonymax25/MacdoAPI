@@ -12,7 +12,7 @@ module.exports = function (app) {
                 return;
             }
             try {
-                const admin = await AuthController.subscribe(body.login, body.password, body.email,true,false);
+                const admin = await AuthController.subscribe(body.login, body.password, body.email, body.address, true, false);
                 if (admin) {
                     res.status(201).json(admin);
                 } else {
