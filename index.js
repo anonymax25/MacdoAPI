@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const LoggerMiddleware = require('./middleware').LoggerMiddleware;
 
 const app = express();
 
@@ -20,7 +21,8 @@ async function startServer() {
         console.log(`Connection successful to mongoDB`);
 
         app.use(cors());
-
+        app.use(LoggerMiddleware.httpLogger())
+        
         routes(app);
 
         app.listen(process.env.PORT, () => {
