@@ -24,12 +24,9 @@ module.exports = function (app) {
     });
 
     app.get('/admin/menu', bodyParser.json(), async (req, res) => {
-        let doPopulate = false;
-        if(req.body.doPopulate){
-            doPopulate = req.body.doPopulate;
-        }
+
         try {
-            const menus = await MenuController.getAll(doPopulate);
+            const menus = await MenuController.getAll(true);
             if (menus) {
                 res.status(200).json(menus);
             } else {

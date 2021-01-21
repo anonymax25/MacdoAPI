@@ -60,7 +60,7 @@ module.exports = function (app) {
 
     app.get('/admin/product/:id', bodyParser.json(), async (req, res) => {
         try {
-            const ingredient = await ProductsController.getProductById(req.params.id, req.body.doPopulate);
+            const ingredient = await ProductsController.getProductById(req.params.id, true);
             if (ingredient) {
                 res.status(200).json(ingredient);
             } else {
