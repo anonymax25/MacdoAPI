@@ -41,12 +41,8 @@ module.exports = function (app) {
     });
 
     app.get('/admin/product/promo', bodyParser.json(), async (req, res) => {
-        let doPopulate = false;
-        if(req.body.doPopulate){
-            doPopulate = req.body.doPopulate;
-        }
         try {
-            const products = await ProductsController.getProductsWithPromo(doPopulate);
+            const products = await ProductsController.getProductsWithPromo(false);
             if (products) {
                 res.status(200).json(products);
             } else {

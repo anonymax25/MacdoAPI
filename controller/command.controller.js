@@ -29,7 +29,7 @@ class CommandController {
 
         for (const product_id of products) {
             res = await ProductsController.getProductById(product_id, false);
-            price += res.price * res.promoPourcentage;
+            price += res.price  - (res.price * (res.promoPourcentage / 100));
         }
 
       const command = new Command({
