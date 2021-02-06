@@ -19,9 +19,9 @@ module.exports = function (app) {
     });
 
     app.post('/admin/preparator',AuthMiddleware.adminAuth(), bodyParser.json(), async (req, res) => {
-        if (req.body.login && req.body.password && req.body.email && req.body.address) {
+        if (req.body.login && req.body.password && req.body.email) {
             try {
-                const admin = await AuthController.subscribe(req.body.login, req.body.password, req.body.email,false,true, req.body.address);
+                const admin = await AuthController.subscribe(req.body.login, req.body.password, req.body.email, false, true);
                 if (admin) {
                     res.status(201).json(admin);
                 } else {
