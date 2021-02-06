@@ -16,7 +16,7 @@ module.exports = function (app) {
                     res.status(409).end();
                 }
             } catch (e) {
-                res.status(409).end();
+                res.status(500).end();
             }
 
         } else {
