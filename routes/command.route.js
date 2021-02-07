@@ -58,7 +58,7 @@ module.exports = function (app) {
     /**
      * @description get les commandes d'un utilisateur
      */
-    app.get('/command/history', AuthMiddleware.auth(), async (req, res) => {
+    app.post('/command/history', AuthMiddleware.auth(), async (req, res) => {
         if(req.user._id) {
             try {
                 const commands = await CommandController.getHistory(req.user._id);
