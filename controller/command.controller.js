@@ -41,7 +41,7 @@ class CommandController {
       });
       if(customer === ""){
         command = new Command({
-            null,
+            customer: null,
             products,
             menus,
             staff: null,
