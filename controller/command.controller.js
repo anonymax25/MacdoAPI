@@ -31,15 +31,24 @@ class CommandController {
             res = await ProductsController.getProductById(product_id, false);
             price += res.price  - (res.price * (res.promoPourcentage / 100));
         }
-
-      const command = new Command({
-            customer,
+      let command = new Command({
+          customer,
+          products,
+          menus,
+          staff: null,
+          isValid: false,
+          price
+      });
+      if(customer === ""){
+        command = new Command({
+            null,
             products,
             menus,
             staff: null,
             isValid: false,
             price
         });
+      }
    
         await command.save();
         return command;
